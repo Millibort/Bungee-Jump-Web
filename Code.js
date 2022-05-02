@@ -9,11 +9,12 @@ var mouseClicked = false;
 var key = false;
 
 class textbox {
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, num) {
         this.x = x;
         this.y = y;
         this.w = width;
         this.h = height;
+        this.num = num;
         this.hit = new hitbox(x, y, width, height);
         this.text = ""
     }
@@ -22,6 +23,12 @@ class textbox {
         ctx.fillStyle = "#999999";
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.fill();
+    }
+
+    checkletter(letter) {
+        if(selected == this.num) {
+            this.text += letter
+        }
     }
 }
 
@@ -243,6 +250,8 @@ var Run = function() {
             }
             if(ready.checkhit()) {
                 stage = 2;
+                var Pe = bob.width * 9.8 * (bob.height + 20);
+                var stretchdist = Pe / 0.6;
             }
             latch = true;
         }
@@ -262,6 +271,7 @@ var Run = function() {
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
+        ctx.fillText((123).toString(), 250, 250);
 
         //bob.drawsmall();
         //bob.x ++;
@@ -286,6 +296,7 @@ window.addEventListener('keydown', function (e) {
     key = false;
 })
 
+var selected = 1
 var texttype = new textbox(10, 10, 20, 20)
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
