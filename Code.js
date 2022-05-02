@@ -202,6 +202,7 @@ var Run = function() {
 
         
         ctx.font = "15px Arial";
+        /*
         ctx.fillStyle = "#999999";
         ctx.beginPath();
         triangle(360, 430, 20, 20);
@@ -219,10 +220,11 @@ var Run = function() {
         triangle(430, 480, 20, -20);
         ctx.fillStyle = "#e6e6ff";
         ctx.fillText("-", 430, 480);
+        */
 
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Height", 430, 460);
-        ctx.fillText("Width", 360, 460);
+        //ctx.fillText("Height", 430, 460);
+        //ctx.fillText("Width", 360, 460);
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
@@ -250,8 +252,13 @@ var Run = function() {
             }
             if(ready.checkhit()) {
                 stage = 2;
-                var Pe = bob.width * 9.8 * (bob.height + 20);
-                var stretchdist = Pe / 0.6;
+                var Pe = bob.width * 9.8 * 4.5;
+                console.log(Pe);
+                var stretchdist = Math.sqrt(2*Pe/3);
+                console.log(stretchdist);
+                var otherlen = 0.2 + 0.1 + bob.height + 0.35 + stretchdist;
+                console.log(otherlen);
+                added = 4.5 - otherlen;
             }
             latch = true;
         }
@@ -271,7 +278,7 @@ var Run = function() {
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
-        ctx.fillText((123).toString(), 250, 250);
+        ctx.fillText(added.toString(), 250, 250);
 
         //bob.drawsmall();
         //bob.x ++;
@@ -296,8 +303,9 @@ window.addEventListener('keydown', function (e) {
     key = false;
 })
 
+var added;
 var selected = 1
-var texttype = new textbox(10, 10, 20, 20)
+var texttype = new textbox(10, 10, 20, 20, 1)
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
