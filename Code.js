@@ -193,7 +193,6 @@ var Run = function() {
         ctx.textAlign = "center";
         ctx.fillText("Ready!", 250, 450);
 
-        /*
         ctx.font = "15px Arial";
         ctx.fillStyle = "#999999";
         ctx.beginPath();
@@ -212,7 +211,6 @@ var Run = function() {
         triangle(430, 480, 20, -20);
         ctx.fillStyle = "#e6e6ff";
         ctx.fillText("-", 430, 480);
-        */
 
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText("Height", 430, 460);
