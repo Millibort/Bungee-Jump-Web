@@ -7,6 +7,16 @@ var mouseX = 0
 var mouseY = 0
 var mouseClicked = false;
 
+triangle = function(x, y, width, height) { 
+    ctx.beginPath()
+    ctx.moveTo(x - (width / 2), y + (height / 2))
+    ctx.lineTo(x, y - (height / 2))
+    ctx.lineTo(x + (width / 2), y + (height / 2))
+    ctx.lineTo(x - (width / 2), y + (height / 2))
+    ctx.fill()
+    ctx.closePath()
+};
+
 class hitbox {
     constructor(x, y, width, height) {
         this.x = x;
@@ -36,27 +46,31 @@ class slider {
     }
 
     moveslide() {
-        if(mouseX < this.slidex + 15 && mouseX > this.slidex - 15) {
-            if(mouseY < this.slidey + 15 && mouseY > this.slidey - 15) {
+        if(mouseX < this.x2 && mouseX > this.x1 - 15) {
                 if(this.dir == "x"){
-                    if(mouseX < this.x2 - 10 && mouseX > this.x1 + 10) {
-                        this.slidex = mouseX;
-                        bob.width = ((this.slidex - 11 ) - this.x1) + Math.round((((slide12.slidex - 11 ) - slide12.x1) / 300) * 100) /100;
+                    if(mouseY < this.slidey + 12 && mouseY > this.slidey - 12) {
+                        if(mouseX < this.x2 - 10 && mouseX > this.x1 + 10) {
+                            this.slidex = mouseX;
+                            bob.width = ((this.slidex - 11 ) - this.x1) + Math.round((((slide12.slidex - 11 ) - slide12.x1) / 300) * 100) /100;
+                        }
                     }
                 }
                 else if(this.dir == "y"){
-                    if(mouseY < this.y2 - 11 && mouseY > this.y1 + 11) {
-                        this.slidey = mouseY;
-                        bob.height = Math.round((2.77 - ((this.slidey - 11 ) - this.y1) / 100) * 1000) /1000
+                    if(mouseY < this.y2 && mouseY > this.y1) {
+                        if(mouseY < this.y2 - 11 && mouseY > this.y1 + 11) {
+                            this.slidey = mouseY;
+                            bob.height = Math.round((2.77 - ((this.slidey - 11 ) - this.y1) / 100) * 1000) /1000
+                        }
                     }
                 }
                 else if(this.dir == "xf"){
-                    if(mouseX < this.x2 - 10 && mouseX > this.x1 + 10) {
-                        this.slidex = mouseX;
-                        bob.width = ((slide1.slidex - 11 ) - slide1.x1) + Math.round((((this.slidex - 11 ) - this.x1) / 300) * 100) /100;
+                    if(mouseY < this.slidey + 12 && mouseY > this.slidey - 12) {
+                        if(mouseX < this.x2 - 10 && mouseX > this.x1 + 10) {
+                            this.slidex = mouseX;
+                            bob.width = ((slide1.slidex - 11 ) - slide1.x1) + Math.round((((this.slidex - 11 ) - this.x1) / 300) * 100) /100;
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -162,6 +176,18 @@ var Run = function() {
         ctx.fillText("Ready!", 250, 450);
 
         ctx.font = "15px Arial";
+        ctx.fillStyle = "#999999";
+        ctx.beginPath();
+        triangle(360, 430, 20, 20);
+        triangle(360, 480, 20, -20);
+        triangle(430, 430, 20, 20);
+        triangle(430, 480, 20, -20);
+
+        ctx.fill();
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("Height", 430, 460);
+        ctx.fillText("Width", 360, 460);
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
@@ -171,11 +197,28 @@ var Run = function() {
             slide1.moveslide();
             slide12.moveslide();
             slide2.moveslide();
-            if(ready.checkhit()) {
-                stage = 2
+            if(latch == false) {
+                if(widthup.checkhit()) {
+                    bob.width = Math.round((bob.width * 100) + 1) / 100;
+                }
+                if(widthdown.checkhit()) {
+                    bob.width = Math.round((bob.width * 100) - 1) / 100;
+                }
+                if(heightup.checkhit()) {
+                    bob.height = Math.round((bob.height * 100) + 1) / 100;
+                }
+                if(heightdown.checkhit()) {
+                    bob.height = Math.round((bob.height * 100) - 1) / 100;
+                }
             }
+            if(ready.checkhit()) {
+                stage = 2;
+            }
+            latch = true;
         }
-
+        else {
+            latch = false;
+        }
         bob.drawbig();
         slide1.draw();
         slide12.draw();
@@ -183,8 +226,15 @@ var Run = function() {
     }
     else if(stage == 2) {
         ctx.fillStyle = "#FFFFFF";
-        bob.drawsmall();
-        bob.x ++;
+
+        ctx.font = "15px Arial";
+        ctx.fillText(bob.width.toString() + " Kg", 50, 450);
+        ctx.fillText(bob.height.toString() + " M", 50, 475);
+        ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
+        ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
+
+        //bob.drawsmall();
+        //bob.x ++;
     }
 };
   
@@ -202,10 +252,15 @@ function mouseMoveHandler(e) {
     mouseY = e.clientY - canvas.offsetTop;
 }
 
-const ready = new hitbox(190, 415, 120, 50)
+const ready = new hitbox(190, 415, 120, 50);
+const widthup = new hitbox(350, 420, 20, 20);
+const widthdown = new hitbox(350, 470, 20, 20);
+const heightup = new hitbox(420, 420, 20, 20);
+const heightdown = new hitbox(420, 470, 20, 20);
 var bob = new char();
 var slide1 = new slider(100, 25, 400, 50, "x");
 var slide12 = new slider(100, 10, 400, 15, "xf");
 var slide2 = new slider(425, 100, 450, 400, "y");
 stage = 1;
+var latch = false;
 var Interv = setInterval(Run, 20);
