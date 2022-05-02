@@ -6,6 +6,24 @@ document.body.insertBefore(canvas, document.body.childNodes[0]);
 var mouseX = 0
 var mouseY = 0
 var mouseClicked = false;
+var key = false;
+
+class textbox {
+    constructor(x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
+        this.hit = new hitbox(x, y, width, height);
+        this.text = ""
+    }
+
+    draw() {
+        ctx.fillStyle = "#999999";
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.fill();
+    }
+}
 
 triangle = function(x, y, width, height) { 
     ctx.beginPath()
@@ -179,11 +197,20 @@ var Run = function() {
         ctx.fillStyle = "#999999";
         ctx.beginPath();
         triangle(360, 430, 20, 20);
+        ctx.fillStyle = "#e6e6ff";
+        ctx.fillText("+", 360, 438);
+        ctx.fillStyle = "#999999";
         triangle(360, 480, 20, -20);
+        ctx.fillStyle = "#e6e6ff";
+        ctx.fillText("-", 360, 480);
+        ctx.fillStyle = "#999999";
         triangle(430, 430, 20, 20);
+        ctx.fillStyle = "#e6e6ff";
+        ctx.fillText("+", 430, 438);
+        ctx.fillStyle = "#999999";
         triangle(430, 480, 20, -20);
-
-        ctx.fill();
+        ctx.fillStyle = "#e6e6ff";
+        ctx.fillText("-", 430, 480);
 
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText("Height", 430, 460);
@@ -192,6 +219,8 @@ var Run = function() {
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
+
+        texttype.draw();
 
         if(mouseClicked) {
             slide1.moveslide();
@@ -245,13 +274,18 @@ window.addEventListener('mousedown', function (e) {
 window.addEventListener('mouseup', function (e) {
     mouseClicked = false;
   })
-document.addEventListener("mousemove", mouseMoveHandler, false);
-
-function mouseMoveHandler(e) {
+document.addEventListener("mousemove", function (e) {
     mouseX = e.clientX - canvas.offsetLeft;
     mouseY = e.clientY - canvas.offsetTop;
-}
+});
+window.addEventListener('keydown', function (e) {
+    key = e.key;
+})
+  window.addEventListener('keyup', function (e) {
+    key = false;
+})
 
+var texttype = new textbox(10, 10, 20, 20)
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
@@ -263,4 +297,4 @@ var slide12 = new slider(100, 10, 400, 15, "xf");
 var slide2 = new slider(425, 100, 450, 400, "y");
 stage = 1;
 var latch = false;
-var Interv = setInterval(Run, 20);
+var Interv = setInterval(Run, 2);
