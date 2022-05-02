@@ -202,7 +202,6 @@ var Run = function() {
 
         
         ctx.font = "15px Arial";
-        /*
         ctx.fillStyle = "#999999";
         ctx.beginPath();
         triangle(360, 430, 20, 20);
@@ -220,11 +219,10 @@ var Run = function() {
         triangle(430, 480, 20, -20);
         ctx.fillStyle = "#e6e6ff";
         ctx.fillText("-", 430, 480);
-        */
 
         ctx.fillStyle = "#FFFFFF";
-        //ctx.fillText("Height", 430, 460);
-        //ctx.fillText("Width", 360, 460);
+        ctx.fillText("Height", 430, 460);
+        ctx.fillText("Width", 360, 460);
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
