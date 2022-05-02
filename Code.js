@@ -193,8 +193,9 @@ var Run = function() {
         ctx.textAlign = "center";
         ctx.fillText("Ready!", 250, 450);
 
-        /*
+        
         ctx.font = "15px Arial";
+        /*
         ctx.fillStyle = "#999999";
         ctx.beginPath();
         triangle(360, 430, 20, 20);
