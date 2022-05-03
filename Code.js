@@ -52,7 +52,7 @@ class textbox {
                     this.text = spit.toString();
                     this.text = this.text.replace(/,/g, "")
                     if(pop != undefined) {
-                        this.textlen -= 1;
+                        this.textlen --;
                     }
                 }
                 else if(checklet(letter)) {
@@ -271,6 +271,7 @@ var Run = function() {
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
 
         if(mouseClicked) {
+            selected = false;
             if(widthbox.hit.checkhit()) {
                 selected = widthbox.num
             }
@@ -328,7 +329,7 @@ document.addEventListener("mousemove", function (e) {
 window.addEventListener('keydown', function (e) {
     key = e.key;
 })
-  window.addEventListener('keyup', function (e) {
+window.addEventListener('keyup', function (e) {
     key = false;
 })
 
