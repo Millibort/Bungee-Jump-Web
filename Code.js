@@ -16,7 +16,9 @@ class textbox {
         this.h = height;
         this.num = num;
         this.hit = new hitbox(x, y, width, height);
-        this.text = "test"
+        //max of 6 text length
+        this.textlen = 0
+        this.text = ""
     }
 
     draw() {
@@ -25,19 +27,23 @@ class textbox {
         ctx.rect(this.x, this.y, this.w, this.h);
         ctx.fill();
 
-        /*
-        ctx.fillStyle = "#33FF00";
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.fill();
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(this.text, this.x + (this.width / 2), this.y + (this.height / 2));
-        */
+        ctx.fillStyle = "#000000";
+        ctx.fillText(this.text, this.x + (this.w / 2), this.y + (this.h / 2) + 5);
     }
 
     checkletter(letter) {
-        if(selected == this.num) {
-            this.text += letter
+        if(letter != false) {
+            if(letter == "Backspace") {
+                var spit = this.text.slice(0, this.textlen);
+                this.text.replace(spit[this.textlen], "");
+                this.textlen --;
+            }
+            else if(this.textlen < 6) {
+                if(selected == this.num) {
+                    this.text += letter;
+                    this.textlen ++;
+                }
+            }
         }
     }
 }
@@ -196,6 +202,9 @@ var Run = function() {
     ctx.rect(0, 0, 500, 500);
     ctx.fill();
     if(stage == 1) {
+        widthbox.checkletter(key);
+        heightbox.checkletter(key);
+
         ctx.fillStyle = "#262626";
         ctx.beginPath();
         ctx.rect(0, 410, 500, 500);
@@ -210,54 +219,25 @@ var Run = function() {
         ctx.textAlign = "center";
         ctx.fillText("Ready!", 250, 450);
 
-        /*
-        ctx.font = "15px Arial";
-        ctx.fillStyle = "#999999";
-        ctx.beginPath();
-        triangle(360, 430, 20, 20);
-        ctx.fillStyle = "#e6e6ff";
-        ctx.fillText("+", 360, 438);
-        ctx.fillStyle = "#999999";
-        triangle(360, 480, 20, -20);
-        ctx.fillStyle = "#e6e6ff";
-        ctx.fillText("-", 360, 480);
-        ctx.fillStyle = "#999999";
-        triangle(430, 430, 20, 20);
-        ctx.fillStyle = "#e6e6ff";
-        ctx.fillText("+", 430, 438);
-        ctx.fillStyle = "#999999";
-        triangle(430, 480, 20, -20);
-        ctx.fillStyle = "#e6e6ff";
-        ctx.fillText("-", 430, 480);
-        */
-
         ctx.font = "15px Arial";
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText("Width", 360, 435);
-        ctx.fillText("Height", 430, 460);
+        ctx.fillText("Height", 360, 465);
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
 
         if(mouseClicked) {
+            if(widthbox.hit.checkhit()) {
+                selected = widthbox.num
+            }
+            if(heightbox.hit.checkhit()) {
+                selected = heightbox.num
+            }
             slide1.moveslide();
             slide12.moveslide();
             slide2.moveslide();
-            if(latch == false) {
-                if(widthup.checkhit()) {
-                    bob.width = Math.round((bob.width * 100) + 1) / 100;
-                }
-                if(widthdown.checkhit()) {
-                    bob.width = Math.round((bob.width * 100) - 1) / 100;
-                }
-                if(heightup.checkhit()) {
-                    bob.height = Math.round((bob.height * 100) + 1) / 100;
-                }
-                if(heightdown.checkhit()) {
-                    bob.height = Math.round((bob.height * 100) - 1) / 100;
-                }
-            }
             if(ready.checkhit()) {
                 stage = 2;
                 var Pe = (bob.width * 9.8 * 4.5) - (bob.width * 9.8 * 0.3);
@@ -279,6 +259,7 @@ var Run = function() {
         slide12.draw();
         slide2.draw();
         widthbox.draw();
+        heightbox.draw();
     }
     else if(stage == 2) {
         ctx.fillStyle = "#FFFFFF";
@@ -310,8 +291,9 @@ window.addEventListener('keydown', function (e) {
 })
 
 var added;
-var selected = 1
-var widthbox = new textbox(400, 420, 50, 20, 1)
+var selected = 0
+var widthbox = new textbox(400, 420, 50, 20, 1);
+var heightbox = new textbox(400, 450, 50, 20, 2);
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
