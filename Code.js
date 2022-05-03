@@ -8,6 +8,18 @@ var mouseY = 0
 var mouseClicked = false;
 var key = false;
 
+checklet = function(letter) {
+    var x = 0
+    const good = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
+    while(x < good.length) {
+        if(letter == good[x]) {
+            return(true)
+        }
+        x++
+    }
+    return(false)
+}
+
 class textbox {
     constructor(x, y, width, height, num) {
         this.x = x;
@@ -18,7 +30,7 @@ class textbox {
         this.hit = new hitbox(x, y, width, height);
         //max of 6 text length
         this.textlen = 0
-        this.text = ""
+        this.text = "I"
     }
 
     draw() {
@@ -32,16 +44,22 @@ class textbox {
     }
 
     checkletter(letter) {
-        if(letter != false) {
-            if(letter == "Backspace") {
-                var spit = this.text.slice(0, this.textlen);
-                this.text.replace(spit[this.textlen], "");
-                this.textlen --;
-            }
-            else if(this.textlen < 6) {
-                if(selected == this.num) {
-                    this.text += letter;
-                    this.textlen ++;
+        if(selected == this.num) {
+            if(letter != false) {
+                if(letter == "Backspace") {
+                    var spit = this.text.split("");
+                    var pop = spit.pop();
+                    this.text = spit.toString();
+                    this.text = this.text.replace(/,/g, "")
+                    if(pop != undefined) {
+                        this.textlen -= 1;
+                    }
+                }
+                else if(checklet(letter)) {
+                    if(this.textlen < 6) {
+                        this.text += letter;
+                        this.textlen ++;
+                    }
                 }
             }
         }
@@ -202,8 +220,32 @@ var Run = function() {
     ctx.rect(0, 0, 500, 500);
     ctx.fill();
     if(stage == 1) {
-        widthbox.checkletter(key);
-        heightbox.checkletter(key);
+        if(latch2 == false) {
+            if(key == false) {
+                latch2 = true;
+            }
+        }
+        if(latch2 == true) {
+            if(key != false) {
+                console.log(key)
+                widthbox.checkletter(key);
+                heightbox.checkletter(key);
+                if(isNaN(parseInt(widthbox.text * 100)) == false) {
+                    bob.width = parseInt(widthbox.text * 100) / 100;
+                }
+                else {
+                    bob.width = 0;
+                }
+                
+                if(isNaN(parseInt(heightbox.text * 100)) == false) {
+                    bob.height = parseInt(heightbox.text * 100) / 100;
+                }
+                else {
+                    bob.height = 0;
+                }
+                latch2 = false;
+            }
+        }
 
         ctx.fillStyle = "#262626";
         ctx.beginPath();
@@ -304,5 +346,6 @@ var slide1 = new slider(100, 25, 400, 50, "x");
 var slide12 = new slider(100, 10, 400, 15, "xf");
 var slide2 = new slider(425, 100, 450, 400, "y");
 stage = 1;
+var latch2 = false;
 var latch = false;
 var Interv = setInterval(Run, 20);
