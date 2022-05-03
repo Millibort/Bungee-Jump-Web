@@ -16,13 +16,16 @@ class textbox {
         this.h = height;
         this.num = num;
         this.hit = new hitbox(x, y, width, height);
-        this.text = ""
+        this.text = "test"
     }
 
     draw() {
-        ctx.fillStyle = "#999999";
+        ctx.fillStyle = "#33FF00";
+        ctx.beginPath();
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.fill();
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(this.text, this.x + (this.width / 2), this.y + (this.height / 2));
     }
 
     checkletter(letter) {
@@ -186,7 +189,7 @@ var Run = function() {
     ctx.rect(0, 0, 500, 500);
     ctx.fill();
     if(stage == 1) {
-        ctx.fillStyle = "#262626";
+        /* ctx.fillStyle = "#262626";
         ctx.beginPath();
         ctx.rect(0, 410, 500, 500);
         ctx.fill();
@@ -228,8 +231,6 @@ var Run = function() {
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
 
-        texttype.draw();
-
         if(mouseClicked) {
             slide1.moveslide();
             slide12.moveslide();
@@ -250,9 +251,10 @@ var Run = function() {
             }
             if(ready.checkhit()) {
                 stage = 2;
-                var Pe = bob.width * 9.8 * 4.5;
+                var Pe = (bob.width * 9.8 * 4.5) - (bob.width * 9.8 * 0.3);
                 console.log(Pe);
-                var stretchdist = Math.sqrt(2*Pe/3);
+                Pe = 8.2
+                var stretchdist = Math.sqrt(2*Pe/4);
                 console.log(stretchdist);
                 var otherlen = 0.2 + 0.1 + bob.height + 0.35 + stretchdist;
                 console.log(otherlen);
@@ -266,20 +268,18 @@ var Run = function() {
         bob.drawbig();
         slide1.draw();
         slide12.draw();
-        slide2.draw();
+        slide2.draw(); */
+        test.draw();
     }
     else if(stage == 2) {
         ctx.fillStyle = "#FFFFFF";
-
         ctx.font = "15px Arial";
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
         ctx.fillText(added.toString(), 250, 250);
-
-        //bob.drawsmall();
-        //bob.x ++;
+        texttype.draw();
     }
 };
   
@@ -303,7 +303,7 @@ window.addEventListener('keydown', function (e) {
 
 var added;
 var selected = 1
-var texttype = new textbox(10, 10, 20, 20, 1)
+var test = new textbox(0, 0, 500, 500, 1)
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
@@ -315,4 +315,4 @@ var slide12 = new slider(100, 10, 400, 15, "xf");
 var slide2 = new slider(425, 100, 450, 400, "y");
 stage = 1;
 var latch = false;
-var Interv = setInterval(Run, 2);
+var Interv = setInterval(Run, 20);
