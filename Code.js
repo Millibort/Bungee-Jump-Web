@@ -20,12 +20,19 @@ class textbox {
     }
 
     draw() {
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath();
+        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.fill();
+
+        /*
         ctx.fillStyle = "#33FF00";
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.fill();
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText(this.text, this.x + (this.width / 2), this.y + (this.height / 2));
+        */
     }
 
     checkletter(letter) {
@@ -189,7 +196,7 @@ var Run = function() {
     ctx.rect(0, 0, 500, 500);
     ctx.fill();
     if(stage == 1) {
-        /* ctx.fillStyle = "#262626";
+        ctx.fillStyle = "#262626";
         ctx.beginPath();
         ctx.rect(0, 410, 500, 500);
         ctx.fill();
@@ -203,7 +210,7 @@ var Run = function() {
         ctx.textAlign = "center";
         ctx.fillText("Ready!", 250, 450);
 
-        
+        /*
         ctx.font = "15px Arial";
         ctx.fillStyle = "#999999";
         ctx.beginPath();
@@ -222,10 +229,12 @@ var Run = function() {
         triangle(430, 480, 20, -20);
         ctx.fillStyle = "#e6e6ff";
         ctx.fillText("-", 430, 480);
+        */
 
+        ctx.font = "15px Arial";
         ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("Width", 360, 435);
         ctx.fillText("Height", 430, 460);
-        ctx.fillText("Width", 360, 460);
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
         ctx.fillText(bob.height.toString() + " M", 50, 475);
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
@@ -268,8 +277,8 @@ var Run = function() {
         bob.drawbig();
         slide1.draw();
         slide12.draw();
-        slide2.draw(); */
-        test.draw();
+        slide2.draw();
+        widthbox.draw();
     }
     else if(stage == 2) {
         ctx.fillStyle = "#FFFFFF";
@@ -279,7 +288,6 @@ var Run = function() {
         ctx.fillText((Math.round((bob.width * 2.205)* 1000) / 1000).toString() + " Lbs", 140, 450);
         ctx.fillText((Math.round((bob.height * 3.281)* 1000) / 1000).toString() + " Ft", 140, 475);
         ctx.fillText(added.toString(), 250, 250);
-        texttype.draw();
     }
 };
   
@@ -303,7 +311,7 @@ window.addEventListener('keydown', function (e) {
 
 var added;
 var selected = 1
-var test = new textbox(0, 0, 500, 500, 1)
+var widthbox = new textbox(400, 420, 50, 20, 1)
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
