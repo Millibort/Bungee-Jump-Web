@@ -21,7 +21,7 @@ checklet = function(letter) {
 }
 
 class textbox {
-    constructor(x, y, width, height, num) {
+    constructor(x, y, width, height, num, text = "0.00") {
         this.x = x;
         this.y = y;
         this.w = width;
@@ -30,7 +30,7 @@ class textbox {
         this.hit = new hitbox(x, y, width, height);
         //max of 6 text length
         this.textlen = 0
-        this.text = "I"
+        this.text = text
     }
 
     draw() {
@@ -334,8 +334,8 @@ window.addEventListener('keydown', function (e) {
 
 var added;
 var selected = 0
-var widthbox = new textbox(400, 420, 50, 20, 1);
-var heightbox = new textbox(400, 450, 50, 20, 2);
+var widthbox = new textbox(400, 420, 50, 20, 1, "89.8");
+var heightbox = new textbox(400, 450, 50, 20, 2, "1.7");
 const ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
