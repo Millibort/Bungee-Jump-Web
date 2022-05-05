@@ -283,14 +283,7 @@ var Run = function() {
             slide2.moveslide();
             if(ready.checkhit()) {
                 stage = 2;
-                var Pe = (bob.width * 9.8 * 4.5) - (bob.width * 9.8 * 0.3);
-                console.log(Pe);
-                Pe = 8.2
-                var stretchdist = Math.sqrt(2*Pe/4);
-                console.log(stretchdist);
-                var otherlen = 0.2 + 0.1 + bob.height + 0.35 + stretchdist;
-                console.log(otherlen);
-                added = 4.5 - otherlen;
+                latch2 = false;
             }
             latch = true;
         }
@@ -305,6 +298,104 @@ var Run = function() {
         heightbox.draw();
     }
     else if(stage == 2) {
+        ctx.fillStyle = "#262626";
+        ctx.beginPath();
+        ctx.rect(0, 410, 500, 500);
+        ctx.fill();
+
+        ctx.fillStyle = "#000000";
+        ctx.beginPath();
+        ctx.rect(190, 415, 120, 50);
+        ctx.fill();
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "#e6e6ff";
+        ctx.textAlign = "center";
+        ctx.fillText("Ready!", 250, 450);
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "15px Arial";
+        ctx.fillText("Total", 122, 90);
+        total.draw();
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("Ending height", 372, 90);
+        ending.draw();
+        ctx.fillStyle = "#FFFFFF";
+        //ctx.fillText("Spring constant", );
+        K.draw();
+        ctx.fillStyle = "#FFFFFF";
+        //ctx.fillText("Bungee length", );
+        cordlen.draw();
+        if(mouseClicked) {
+            selected = false;
+            if(total.hit.checkhit()) {
+                selected = total.num
+            }
+            if(ending.hit.checkhit()) {
+                selected = ending.num
+            }
+            if(K.hit.checkhit()) {
+                selected = K.num
+            }
+            if(cordlen.hit.checkhit()) {
+                selected = cordlen.num
+            }
+
+            if(ready.checkhit()) {
+                var Pe = (bob.width * 9.8 * totalheight) - (bob.width * 9.8 * endheight);
+                console.log(Pe);
+                var stretchdist = Math.sqrt(2*Pe/sK);
+                console.log(stretchdist);
+                var otherlen = endheight + bob.height + cordlength + stretchdist;
+                console.log(otherlen);
+                added = totalheight - otherlen;
+                stage = 3;
+            }
+        }
+    
+        if(latch2 == false) {
+            if(key == false) {
+                latch2 = true;
+            }
+        }
+        if(latch2 == true) {
+            if(key != false) {
+                console.log(key)
+                total.checkletter(key);
+                ending.checkletter(key);
+                K.checkletter(key);
+                cordlen.checkletter(key);
+                if(isNaN(parseInt(total.text * 100)) == false) {
+                    totalheight = parseInt(total.text * 100) / 100;
+                }
+                else {
+                    totalheight = 0;
+                }
+                
+                if(isNaN(parseInt(ending.text * 100)) == false) {
+                    endheight = parseInt(ending.text * 100) / 100;
+                }
+                else {
+                    endheight = 0;
+                }
+                
+                if(isNaN(parseInt(K.text * 100)) == false) {
+                    sK = parseInt(K.text * 100) / 100;
+                }
+                else {
+                    sK = 0;
+                }
+                
+                if(isNaN(parseInt(cordlen.text * 100)) == false) {
+                    cordlength = parseInt(cordlen.text * 100) / 100;
+                }
+                else {
+                    cordlength = 0;
+                }
+                latch2 = false;
+            }
+        }
+    }
+    else if(stage == 3) {
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "15px Arial";
         ctx.fillText(bob.width.toString() + " Kg", 50, 450);
@@ -333,15 +424,25 @@ window.addEventListener('keyup', function (e) {
     key = false;
 })
 
+var cordlength;
+var sK;
+var endheight;
+var totalheight;
 var added;
 var selected = 0
 var widthbox = new textbox(400, 420, 50, 20, 1, "89.8");
 var heightbox = new textbox(400, 450, 50, 20, 2, "1.7");
-const ready = new hitbox(190, 415, 120, 50);
+var ready = new hitbox(190, 415, 120, 50);
 const widthup = new hitbox(350, 420, 20, 20);
 const widthdown = new hitbox(350, 470, 20, 20);
 const heightup = new hitbox(420, 420, 20, 20);
 const heightdown = new hitbox(420, 470, 20, 20);
+
+const total = new textbox(100, 100, 50, 20, 3, "1.7");
+const ending = new textbox(350, 100, 50, 20, 4, "1.7");
+const K = new textbox(100, 300, 50, 20, 5, "1.7");
+const cordlen = new textbox(350, 300, 50, 20, 6, "1.7");
+
 var bob = new char();
 var slide1 = new slider(100, 25, 400, 50, "x");
 var slide12 = new slider(100, 10, 400, 15, "xf");
