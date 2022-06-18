@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Distracted Driving</title>
+    </head>
+    <body>
+        <h2>Velocity of car (meters/second)</h2><br>
+        <input type="text" id="speed"><br>
+        <h2>Distraction time (seconds)</h2><br>
+        <input type="text" id="disTime"><br>
+        <h2>Your reaction time (seconds) (optional)</h2><br>
+        <input type="text" id="reacTime"><br><br>
+        <button onclick="calculate()">Run</button><br><br>
+        <p id="output1"></p><br>
+        <p id="output2"></p><br>
+        <script>
+            function calculate() {
+                var re = 1
+                var sp = document.getElementById("speed").value;
+                var di = document.getElementById("disTime").value;
+                var re = document.getElementById("reacTime").value;
+                if (re == 0) {
+                    re = .25
+                }
+                var disDis = sp*di
+                var disReac = sp*re
+                document.getElementById("output1").innerHTML = disDis;
+                document.getElementById("output2").innerHTML = disReac;
+            }
+        </script>
+    </body>
+</html>

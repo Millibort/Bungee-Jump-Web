@@ -1,0 +1,35 @@
+body {
+	background-color:black;
+	color:white;
+	text-align:center;
+	}
+p {
+	font-family: Comic sans MS;
+	font-size: 20px;
+	color: #faf3fa;
+	}
+ol {
+	display: inline-block;
+	}
+ul {
+	list-style-type: square;
+	}
+li {
+	font-size: 15px;
+	font-family: Arial;
+	color: #e4dede;
+	}
+img {
+	width:200px;
+	height:150px;
+	}
+a:link {
+	color:sandybrown
+}
+a:visited {
+	color:wheat
+}
+a:hover {
+	font-size:1px;
+	color:salmon
+}
