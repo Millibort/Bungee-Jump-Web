@@ -1,0 +1,243 @@
+body {
+	width: 900px;
+	margin: auto;
+	background-image: url("background2.jpg");
+	background-size: cover;
+	font-family: Lucida Bright,Georgia,serif;
+}
+
+a {
+	font-size:115%;
+	font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+}
+
+a:hover {
+	color:#ffffff;
+	font-size:120%;
+	font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 	
+}
+
+a:visted {
+	font-size:115%;
+	font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 	
+}
+
+ul {
+	color: #ffffff;
+	font-family: Lucida Bright,Georgia,serif;
+}
+
+table {
+	padding:auto;
+	float: right;
+	margin-right: 5px;
+	color: #ffffff;
+	border: 1px solid #3a3a3a;
+	text-align: center;
+	background-color: gray;
+}
+
+th {
+	margin: 0px;
+	width: 50px;
+	border: 1px solid #3a3a3a;
+	background-color: #7e5746;
+}
+
+td {
+	margin: 0px;
+	width: 50px;
+	border: 1px solid #3a3a3a;
+	background-color: #7e5746;
+}
+
+.yes {
+	background-color: #09ff00;
+	color: #000000;
+}
+
+.no {
+	background-color: #ff1100;
+}
+
+img {
+	margin: 5px;
+	float:right;
+  	width: 50%;
+}
+
+h1 {
+	color: #b1b1b1;
+	text-align: center;
+}
+
+h3 {
+	color: #b1b1b1;
+	text-align: center;
+	margin:auto;
+}
+
+p {
+	color: #b1b1b1;
+	margin: 5px;
+}
+
+.banner {
+	width: auto;
+	height: 100px;
+}
+
+.main {
+	width: 797px;
+	height: 1000px;
+	float: left;
+	background-color: #000000;
+	border: 1px solid #3a3a3a;
+}
+
+.nav {
+	text-align: center;
+	width: 100px;
+	height: 1000px;
+	background-color: #000000;
+	float: right;
+	border: 1px solid #3a3a3a;
+	border-left: 0px solid #3a3a3a;
+}
+
+.ender {
+	text-align: center;
+	width: 898px;
+	background-color: #000000;
+	border: 1px solid #3a3a3a;
+}
+
+.titlesblock {
+	width: 726px;
+	height: 331px;
+	margin: auto;
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	margin: -165px 0 0 -363px;
+}
+
+.titlesblockborder {
+	width: 799px;
+	height: 364px;
+	position: relative;
+}
+
+.skyrimimg {
+	align-content: right;
+	width:220px;
+	height:301px;
+	background: url("220px-The_Elder_Scrolls_V_Skyrim_cover.png") no-repeat;
+	background-size: cover;
+	margin-top: 15px;
+	margin-right: 11px;
+	margin-bottom: 15px;
+	margin-left: 11px;
+	float: right;
+}
+
+.skyrimimg:hover {
+	align-content: right;
+	width:242px;
+	height:331px;
+	background: url("220px-The_Elder_Scrolls_V_Skyrim_cover.png") no-repeat;
+	background-size: cover;
+	margin: 0px
+}
+
+.oblivionimg {
+	align-content: left;
+	width:220px;
+	height:301px;
+	background: url("Oblivionthumbnail.png") no-repeat;
+	background-size: cover;
+	margin-top: 15px;
+	margin-right: 11px;
+	margin-bottom: 15px;
+	margin-left: 11px;
+	float:right;
+}
+
+.oblivionimg:hover {
+	align-content: left;
+	width:242px;
+	height:331px;
+	background: url("Oblivionthumbnail.png") no-repeat;
+	background-size: cover;
+	margin: 0px;
+}
+
+.morrowindimg {
+	align-content: left;
+	width:220px;
+	height:301px;
+	background: url("Morrowind.jpg") no-repeat;
+	background-size: cover;
+	margin-top: 15px;
+	margin-right: 11px;
+	margin-bottom: 15px;
+	margin-left: 11px;
+	float:right;
+}
+
+.morrowindimg:hover {
+	align-content: left;
+	width:242px;
+	height:331px;
+	background: url("Morrowind.jpg") no-repeat;
+	background-size: cover;
+	margin: 0px;
+}
+
+.smallskyrimimg {
+	align-content: right;
+	width:71.5px;
+	height:97.5px;
+	background: url("220px-The_Elder_Scrolls_V_Skyrim_cover.png") no-repeat;
+	background-size: cover;
+	margin-top: 6.5px;
+	margin-right: auto;
+	margin-bottom: 6.5px;
+	margin-left: auto;
+}
+
+.smalloblivionimg {
+	align-content: left;
+	width:71.5px;
+	height:97.5px;
+	background: url("Oblivionthumbnail.png") no-repeat;
+	background-size: cover;
+	margin-top: 2.275px;
+	margin-right: auto;
+	margin-bottom: 2.275px;
+	margin-left: auto;
+}
+
+.smallmorrowindimg {
+	align-content: left;
+	width:71.5px;
+	height:97.5px;
+	background: url("Morrowind.jpg") no-repeat;
+	background-size: cover;
+	margin-top: 7.5px;
+	margin-right: auto;
+	margin-bottom: 7.5px;
+	margin-left: auto;
+}
+
+.home {
+	align-content: left;
+	width:71.5px;
+	height: 45px;
+	background: url("Home.png") no-repeat;
+	background-size: cover;
+	margin-top: 7.5px;
+	margin-right: auto;
+	margin-bottom: 7.5px;
+	margin-left: auto;
+}
