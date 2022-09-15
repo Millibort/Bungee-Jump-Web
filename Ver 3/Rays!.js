@@ -267,7 +267,7 @@ addHitBox(20,120,20,1,'wall');
 addHitBox(20,160,20,1,'wall');
 addHitBox(180,200,20,20,'wall');
 addHitBox(135,207.5,5,5,'chest');
-num = 0;
+/*num = 0;
 while(num < 400) {
     addHitBox(num,0,1,600,'grid');
     num += 40;
@@ -276,5 +276,5 @@ num = 0;
 while(num < 400) {
     addHitBox(0,num,600,1,'grid');
     num += 40;
-};
+};*/
 setInterval(Run, 20);
