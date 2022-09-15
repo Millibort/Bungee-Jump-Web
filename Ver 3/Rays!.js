@@ -88,7 +88,8 @@ var createRays = function() {
         var moves = 0;
         while(moves < renDist) {
             if(checkCollisions() === true) {
-                else {hits.push([X, Y, wall]); moves = 4000000;}
+                hits.push([X, Y, wall]);
+                moves = 4000000;
             }
             else {
                 move(MoveAngle);
