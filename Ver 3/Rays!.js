@@ -215,19 +215,22 @@ document.body.insertBefore(canvas, document.body.childNodes[0]);
 
 canvas.style.cursor = "none";
 var key = false;
+var key2 = false;
 window.addEventListener('keydown', function (e) {
-    key = e.key;
+    if(key != false) {
+        key = e.key;
+    }
+    else if(key == false) {
+        key2 = e.key;
+    }
 })
   window.addEventListener('keyup', function (e) {
-    key = false;
-})
-
-var key2 = false;
-window.addEventListener('keydown', function (b) {
-    key2 = b.key;
-})
-  window.addEventListener('keyup', function (b) {
-    key2 = false;
+    if(key == e.key) {
+        key = false;
+    }
+    else if(key2 == e.key) {
+        key2 = false;
+    }
 })
 
 addHitBox(-1,-1,1,241,'wall');
