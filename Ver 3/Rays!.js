@@ -220,7 +220,7 @@ window.addEventListener('keydown', function (e) {
     if(key != false) {
         key = e.key;
     }
-    else if(key == false) {
+    else if(key2 != false) {
         key2 = e.key;
     }
 })
