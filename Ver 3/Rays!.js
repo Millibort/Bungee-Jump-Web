@@ -217,10 +217,10 @@ canvas.style.cursor = "none";
 var key = false;
 var key2 = false;
 window.addEventListener('keydown', function (e) {
-    if(key != false) {
+    if(key == false) {
         key = e.key;
     }
-    else if(key2 != false) {
+    else if(key2 == false) {
         key2 = e.key;
     }
 })
