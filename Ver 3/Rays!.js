@@ -155,7 +155,7 @@ var pointdraw = function() {
 };
 
 var movechar = function() {
-    if (key == 'a') or (key2 == 'a') {
+    if (key == 'a' || key2 == 'a') {
         charX += -moveSpeed;
         if(checkCollisions2() === true) {
             console.log('a');
@@ -165,7 +165,7 @@ var movechar = function() {
         }
 
     }
-    else if (key == 'd') or (key2 == 'd') {
+    else if (key == 'd' || key2 == 'd') {
         charX += moveSpeed;
         if(checkCollisions2() === true) {
             console.log('d');
@@ -173,7 +173,7 @@ var movechar = function() {
             else {charX -= moveSpeed;}
         }
     }
-    else if (key == 'w') or (key2 == 'w') {
+    else if (key == 'w' || key2 == 'w') {
         charY += -moveSpeed;
         if(checkCollisions2() === true) {
             console.log('w');
@@ -181,7 +181,7 @@ var movechar = function() {
             else {charY -= -moveSpeed;}
         }
     }
-    else if (key == 's') or (key2 == 's') {
+    else if (key == 's' || key2 == 's') {
         charY += moveSpeed;
         if(checkCollisions2() === true) {
             console.log('s');
