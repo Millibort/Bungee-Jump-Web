@@ -68,14 +68,15 @@ var Run = function() {
         var i = 0;
         while(i<16) {
             var num = data[2].map[i2][i];
-            console.log(num)
+            //var num = 0;
+            //console.log(num)
             var i3 = 0;
             while(i3<16) {
                 var i4 = 0;
                 while(i4<16) {
                     ctx.fillStyle = data[num].texture[i3][i4];
                     ctx.beginPath();
-                    ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i4*mult), 1*mult, 1*mult);
+                    ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
                     ctx.fill();
                     i4++;
                 }
