@@ -67,7 +67,7 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            var num = data[2].map[i2][i];
+            var num = data[0].map[i2][i];
             console.log(num)
             var i3 = 0;
             while(i3<16) {
