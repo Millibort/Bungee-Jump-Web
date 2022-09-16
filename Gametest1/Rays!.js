@@ -31,7 +31,7 @@ var loaddata = function() {
 }
 
 function prerun() {
-    if(data.length == 3) {
+    if(data.length == 4) {
         clearInterval(pre);
         console.log(data);
         setInterval(Run, 33);
