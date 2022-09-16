@@ -1,19 +1,15 @@
 {
     "map":[
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["air","air","air","air","air","air","air","air","air","air","air","air","air","air","air","air"],
-        ["ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground","ground"]
-    ],
-    "materials":[
-        "air",
-        "ground"
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     ]
 }

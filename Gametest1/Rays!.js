@@ -48,7 +48,7 @@ function prerun() {
     if(data.length == 3) {
         clearInterval(pre);
         console.log(data);
-        setInterval(Run, 20);
+        setInterval(Run, 33);
     }
 }
 
@@ -67,11 +67,23 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            if(Data[3].map[i2][i] == "air") {ctx.fillStyle = "#87ceeb";}
-            else if(Data[3].map[i2][i] == "ground") {ctx.fillStyle = "#964B00";}
-            ctx.beginPath();
+            var num = data[2].map[i2][i];
+            console.log(num)
+            var i3 = 0;
+            while(i3<16) {
+                var i4 = 0;
+                while(i4<16) {
+                    ctx.fillStyle = data[num].texture[i3][i4];
+                    ctx.beginPath();
+                    ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i4*mult), 1*mult, 1*mult);
+                    ctx.fill();
+                    i4++;
+                }
+                i3++;
+            }
+            /*ctx.beginPath();
             ctx.rect(left + (i*16*mult), zero + (i2*16*mult), 16*mult, 16*mult);
-            ctx.fill();
+            ctx.fill();*/
             i++;
         }
         i2++
