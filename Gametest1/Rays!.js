@@ -57,7 +57,7 @@ var Run = function() {
             while(i3<16) {
                 var i4 = 0;
                 while(i4<16) {
-                    ctx.fillStyle = data[num].texture[i3][i4];
+                    ctx.fillStyle = data[num].texture[an][i3][i4];
                     ctx.beginPath();
                     ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
                     ctx.fill();
@@ -69,6 +69,8 @@ var Run = function() {
         }
         i2++
     }
+    an++;
+    if(an > 3) {an = 0;}
 }
 
 var key = false;
@@ -79,6 +81,7 @@ window.addEventListener('keydown', function (e) {
     key = false;
 })
 
+var an = 0;
 var done;
 var pre;
 var data = [1,1,1];
