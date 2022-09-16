@@ -58,11 +58,13 @@ var Run = function() {
             while(i3<16) {
                 var i4 = 0;
                 while(i4<16) {
-                    ctx.fillStyle = data[num].texture[an][i3][i4];
-                    ctx.beginPath();
-                    ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
-                    ctx.fill();
-                    i4++;
+                    if(data[num].texture[an][i3][i4] != "clear") {
+                        ctx.fillStyle = data[num].texture[an][i3][i4];
+                        ctx.beginPath();
+                        ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
+                        ctx.fill();
+                        i4++;
+                    }
                 }
                 i3++;
             }
