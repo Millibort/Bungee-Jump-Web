@@ -14,21 +14,6 @@ var screensetup = function() {
     left = Math.floor(widthremain/2);
     zero = Math.floor(heightremain/2);
 
-/*
-    console.log(widthlower);
-    console.log(widthremain);
-    console.log(heightlower);
-    console.log(heightremain);
-
-    console.log("----------------------------------")
-
-    console.log(zero)
-    console.log(left)
-    console.log(mult)
-
-    console.log(swidth);
-    console.log(sheight);
-*/
     canvas = document.createElement("canvas");
     canvas.width = swidth;
     canvas.height = sheight;
@@ -68,8 +53,6 @@ var Run = function() {
         var i = 0;
         while(i<16) {
             var num = data[2].map[i2][i];
-            //var num = 0;
-            //console.log(num)
             var i3 = 0;
             while(i3<16) {
                 var i4 = 0;
@@ -82,16 +65,12 @@ var Run = function() {
                 }
                 i3++;
             }
-            /*ctx.beginPath();
-            ctx.rect(left + (i*16*mult), zero + (i2*16*mult), 16*mult, 16*mult);
-            ctx.fill();*/
             i++;
         }
         i2++
     }
 }
 
-//canvas.style.cursor = "none";
 var key = false;
 window.addEventListener('keydown', function (e) {
     key = e.key;
