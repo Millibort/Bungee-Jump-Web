@@ -1,0 +1,22 @@
+{
+    "number":2,
+    "name":"air", 
+    "texture":[
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"],
+      ["##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb","##87ceeb"]
+    ]
+  }

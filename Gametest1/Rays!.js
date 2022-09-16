@@ -38,7 +38,9 @@ var screensetup = function() {
 }
 
 var loaddata = function() {
+    fetch("https://millibort.github.io/Gametest1/map1.json").then(res => res.json()).then(json => data.push(json));
     fetch("https://millibort.github.io/Gametest1/ground.json").then(res => res.json()).then(json => data.push(json));
+    fetch("https://millibort.github.io/Gametest1/air.json").then(res => res.json()).then(json => data.push(json));
     pre = setInterval(prerun, 1000);
 }
 
@@ -65,10 +67,10 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            ctx.fillStyle = "#111111";
+            /*ctx.fillStyle = "#111111";
             ctx.beginPath();
             ctx.rect(left + (i*16*mult), zero + (i2*16*mult), 16*mult, 16*mult);
-            ctx.fill(); 
+            ctx.fill(); */
             i++;
         }
         i2++
