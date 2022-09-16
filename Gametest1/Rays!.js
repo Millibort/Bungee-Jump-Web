@@ -45,7 +45,7 @@ var loaddata = function() {
 }
 
 function prerun() {
-    if(done = true) {
+    if(data.length == 3) {
         clearInterval(pre);
         console.log(data);
         setInterval(Run, 20);
