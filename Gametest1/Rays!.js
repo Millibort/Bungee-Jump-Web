@@ -34,7 +34,7 @@ function prerun() {
     if(data.length == 4) {
         clearInterval(pre);
         console.log(data);
-        setInterval(Run, 333);
+        setInterval(Run, );
     }
 }
 
@@ -58,8 +58,8 @@ var Run = function() {
             while(i3<16) {
                 var i4 = 0;
                 while(i4<16) {
-                    if(data[num].texture[an][i3][i4] != "clear") {
-                        ctx.fillStyle = data[num].texture[an][i3][i4];
+                    if(data[num].texture[Math.floor(an)][i3][i4] != "clear") {
+                        ctx.fillStyle = data[num].texture[Math.floor(an)][i3][i4];
                         ctx.beginPath();
                         ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
                         ctx.fill();
@@ -72,7 +72,7 @@ var Run = function() {
         }
         i2++
     }
-    an++;
+    an+=0.125;
     if(an > 3) {an = 0;}
 }
 
