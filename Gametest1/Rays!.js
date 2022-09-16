@@ -63,8 +63,8 @@ var Run = function() {
                         ctx.beginPath();
                         ctx.rect(left + (i*16*mult) + (i4*mult), zero + (i2*16*mult) + (i3*mult), 1*mult, 1*mult);
                         ctx.fill();
-                        i4++;
                     }
+                    i4++;
                 }
                 i3++;
             }
