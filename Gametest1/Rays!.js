@@ -25,7 +25,8 @@ var screensetup = function() {
 var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/ground.json").then(res => res.json()).then(json => data[0] = json);
     fetch("https://millibort.github.io/Gametest1/air.json").then(res => res.json()).then(json => data[1] = json);
-    fetch("https://millibort.github.io/Gametest1/map1.json").then(res => res.json()).then(json => data[2] = json);
+    fetch("https://millibort.github.io/Gametest1/water.json").then(res => res.json()).then(json => data[2] = json);
+    fetch("https://millibort.github.io/Gametest1/map1.json").then(res => res.json()).then(json => data[3] = json);
     pre = setInterval(prerun, 1000);
 }
 
@@ -52,7 +53,7 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            var num = data[2].map[i2][i];
+            var num = data[3].map[i2][i];
             var i3 = 0;
             while(i3<16) {
                 var i4 = 0;
@@ -84,7 +85,7 @@ window.addEventListener('keydown', function (e) {
 var an = 0;
 var done;
 var pre;
-var data = [1,1,1];
+var data = [1,1,1,1];
 var mult;
 var zero;
 var left;
