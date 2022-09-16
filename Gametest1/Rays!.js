@@ -1,4 +1,3 @@
-
 var screensetup = function() {
     //width needs 256
     //height needs 176
@@ -35,11 +34,20 @@ var screensetup = function() {
     canvas.height = sheight;
     ctx = canvas.getContext("2d");
     document.body.insertBefore(canvas, document.body.childNodes[0]);
-    setInterval(Run, 20);
+    loaddata();
 }
 
 var loaddata = function() {
-    var data = jQuery.getJSON("")
+    fetch("https://millibort.github.io/Gametest1/ground.json").then(res => res.json()).then(json => data.push(json));
+    pre = setInterval(prerun, 1000);
+}
+
+function prerun() {
+    if(done = true) {
+        clearInterval(pre);
+        console.log(data);
+        setInterval(Run, 20);
+    }
 }
 
 var Run = function() {
@@ -76,6 +84,9 @@ window.addEventListener('keydown', function (e) {
     key = false;
 })
 
+var done;
+var pre;
+var data = [];
 var mult;
 var zero;
 var left;
