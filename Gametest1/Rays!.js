@@ -23,11 +23,11 @@ var screensetup = function() {
 }
 
 var loaddata = function() {
-    fetch("https://millibort.github.io/Gametest1/ground.json").then(res => res.json()).then(json => data[0] = json);
-    fetch("https://millibort.github.io/Gametest1/air.json").then(res => res.json()).then(json => data[1] = json);
-    fetch("https://millibort.github.io/Gametest1/water.json").then(res => res.json()).then(json => data[2] = json);
-    fetch("https://millibort.github.io/Gametest1/grass.json").then(res => res.json()).then(json => data[3] = json);
-    fetch("https://millibort.github.io/Gametest1/map1.json").then(res => res.json()).then(json => data[4] = json);
+    fetch("https://millibort.github.io/Gametest1/data/ground.json").then(res => res.json()).then(json => data[0] = json);
+    fetch("https://millibort.github.io/Gametest1/data/air.json").then(res => res.json()).then(json => data[1] = json);
+    fetch("https://millibort.github.io/Gametest1/data/water.json").then(res => res.json()).then(json => data[2] = json);
+    fetch("https://millibort.github.io/Gametest1/data/grass.json").then(res => res.json()).then(json => data[3] = json);
+    fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[4] = json);
     pre = setInterval(prerun, 1000);
 }
 
