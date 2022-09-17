@@ -28,7 +28,7 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/water.json").then(res => res.json()).then(json => data[2] = json);
     fetch("https://millibort.github.io/Gametest1/data/grass.json").then(res => res.json()).then(json => data[3] = json);
     fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[4] = json);
-    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[5] = json);
+    fetch("https://millibort.github.io/Gametest1/data/back.png").then(res => res.json()).then(json => data[5] = json);
     pre = setInterval(prerun, 100);
 }
 
