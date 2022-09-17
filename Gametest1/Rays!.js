@@ -53,13 +53,13 @@ var Run = function() {
 
     //background draw
     var x = 0;
-    while(x < 128) {
+    while(x < 64) {
         var y = 0;
-        while(y < 88){
+        while(y < 44){
             //console.log(data[5].map[y][x])
             ctx.fillStyle = data[5].map[y][x];
             ctx.beginPath();
-            ctx.rect(left + (x*mult*2), zero + (y*mult*2), 2*mult, 2*mult);
+            ctx.rect(left + (x*mult*4), zero + (y*mult*4), 4*mult, 4*mult);
             ctx.fill();
             y++;
         }
@@ -91,6 +91,11 @@ var Run = function() {
     }
     an+=0.25;
     if(an > 3.9999) {an = 0;}
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.beginPath();
+    ctx.rect(left + (mousex*mult), zero + (mousey*mult), 1*mult, 1*mult);
+    ctx.fill();
     //console.log([mousex, mousey])
 }
 
