@@ -34,7 +34,7 @@ function prerun() {
     if(data.length == 4) {
         clearInterval(pre);
         console.log(data);
-        setInterval(Run, );
+        setInterval(Run, 50);
     }
 }
 
