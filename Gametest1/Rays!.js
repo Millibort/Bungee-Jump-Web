@@ -32,7 +32,7 @@ var loaddata = function() {
 }
 
 function prerun() {
-    if(data.length == 5) {
+    if(data.length == data.length) {
         clearInterval(pre);
         console.log(data);
         setInterval(Run, 50);
