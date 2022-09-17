@@ -1,6 +1,6 @@
 {
-    "number":2,
-    "name":"air", 
+    "number":3,
+    "name":"grass", 
     "texture":[
       [["clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear"],
       ["clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear","clear"],
