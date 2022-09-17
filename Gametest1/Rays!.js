@@ -74,7 +74,7 @@ var Run = function() {
         i2++
     }
     an+=0.125;
-    if(an > 4) {an = 0;}
+    if(an > 3) {an = 0;}
 }
 
 var key = false;
