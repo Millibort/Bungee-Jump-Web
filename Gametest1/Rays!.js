@@ -28,12 +28,12 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/water.json").then(res => res.json()).then(json => data[2] = json);
     fetch("https://millibort.github.io/Gametest1/data/grass.json").then(res => res.json()).then(json => data[3] = json);
     fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[4] = json);
-    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[4] = json);
+    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[5] = json);
     pre = setInterval(prerun, 100);
 }
 
 function prerun() {
-    if(data.length == data.length) {
+    if(data[5] != 1) {
         clearInterval(pre);
         console.log(data);
         setInterval(Run, 50);
@@ -52,6 +52,19 @@ var Run = function() {
     ctx.fill();
 
     //background draw
+    var x = 0;
+    while(x < 128) {
+        var y = 0;
+        while(y < 88){
+            //console.log(data[5].map[y][x])
+            ctx.fillStyle = data[5].map[y][x];
+            ctx.beginPath();
+            ctx.rect(left + (x*mult*2), zero + (y*mult*2), 2*mult, 2*mult);
+            ctx.fill();
+            y++;
+        }
+        x++;
+    }
 
     var i2 = 0;
     while(i2<11) {
@@ -78,7 +91,7 @@ var Run = function() {
     }
     an+=0.25;
     if(an > 3.9999) {an = 0;}
-    console.log([mousex, mousey])
+    //console.log([mousex, mousey])
 }
 
 var mousex = false;
