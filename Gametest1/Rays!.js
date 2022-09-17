@@ -77,15 +77,24 @@ var Run = function() {
     }
     an+=0.25;
     if(an > 3.9999) {an = 0;}
+    console.log([mousex, mousey])
 }
 
+var mousex = false;
+var mousey = false;
 var key = false;
+
 window.addEventListener('keydown', function (e) {
     key = e.key;
 })
   window.addEventListener('keyup', function (e) {
     key = false;
 })
+function mousemove(event){ 
+    mousex = Math.floor((event.clientX -left) / mult);
+    mousey =  Math.floor((event.clientY -zero) / mult);
+}
+window.addEventListener('mousemove', mousemove);
 
 var an = 0;
 var done;
