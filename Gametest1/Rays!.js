@@ -50,6 +50,8 @@ var Run = function() {
     ctx.rect(left, zero, 256*mult, 176*mult);
     ctx.fill();
 
+    //background draw
+
     var i2 = 0;
     while(i2<11) {
         var i = 0;
@@ -73,8 +75,8 @@ var Run = function() {
         }
         i2++
     }
-    an+=0.125;
-    if(an > 3) {an = 0;}
+    an+=0.25;
+    if(an > 3.9999) {an = 0;}
 }
 
 var key = false;
