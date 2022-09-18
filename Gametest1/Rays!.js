@@ -53,7 +53,7 @@ var Run = function() {
     ctx.rect(left, zero, 256*mult, 176*mult);
     ctx.fill();
 
-    /*background draw
+    background draw
     var x = 0;
     while(x < 64) {
         var y = 0;
@@ -67,7 +67,7 @@ var Run = function() {
         }
         x++;
     }*/
-    ctx.drawImage(data[5], left, zero)
+    //ctx.drawImage(data[5], left, zero)
 
     var i2 = 0;
     while(i2<11) {
