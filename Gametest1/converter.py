@@ -18,7 +18,16 @@ aray = []
 for i in range(y):
     line = []
     for i2 in range(x):
-        line.append("#" + hex(image[i][i2][0]).split("0x")[1] + hex(image[i][i2][1]).split("0x")[1] + hex(image[i][i2][2]).split("0x")[1])
+        a = hex(image[i][i2][0]).split("0x")[1]
+        if(len(a) == 1):
+            a = "0" + a
+        b = hex(image[i][i2][1]).split("0x")[1]
+        if(len(b) == 1):
+            b = "0" + b
+        c = hex(image[i][i2][2]).split("0x")[1]
+        if(len(c) == 1):
+            c = "0" + c
+        line.append("#" + a + b + c)
     aray.append(line)
 print(aray)
 print(len(aray))
