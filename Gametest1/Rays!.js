@@ -54,10 +54,12 @@ var Run = function() {
 
     //5 was back and 4 was map
     //background draw
+    const length = 64 * 2;
+    const height = 44 * 2;
     var x = 0;
-    while(x < 64) {
+    while(x < length) {
         var y = 0;
-        while(y < 44){
+        while(y < height){
             //console.log(data[5].map[y][x])
             ctx.fillStyle = data[back].map[y][x];
             ctx.beginPath();

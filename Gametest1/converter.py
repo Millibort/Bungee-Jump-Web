@@ -6,7 +6,7 @@ def to_hex(rgb):
     return '%02x%02x%02x' % rgb
 
 path = 'C:/Users/Elias/Downloads/'
-image= imageio.imread(os.path.join(path,'island.bmp')) 
+image= imageio.imread(os.path.join(path,'bigback.bmp')) 
 #print(image)
 
 y = len(image)
@@ -32,5 +32,5 @@ for i in range(y):
         else:
             line.append("#" + a + b + c)
     aray.append(line)
-print(aray)
+print(aray, sep=" ")
 print(len(aray))
