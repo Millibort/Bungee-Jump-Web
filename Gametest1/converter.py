@@ -6,7 +6,7 @@ def to_hex(rgb):
     return '%02x%02x%02x' % rgb
 
 path = 'C:/Users/Elias/Downloads/'
-image= imageio.imread(os.path.join(path,'background1.bmp')) 
+image= imageio.imread(os.path.join(path,'island.bmp')) 
 #print(image)
 
 y = len(image)
@@ -27,7 +27,10 @@ for i in range(y):
         c = hex(image[i][i2][2]).split("0x")[1]
         if(len(c) == 1):
             c = "0" + c
-        line.append("#" + a + b + c)
+        if(a+b+c == "aeaeae"):
+            line.append("clear")
+        else:
+            line.append("#" + a + b + c)
     aray.append(line)
 print(aray)
 print(len(aray))

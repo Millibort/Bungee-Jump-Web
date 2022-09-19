@@ -27,13 +27,14 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/air.json").then(res => res.json()).then(json => data[1] = json);
     fetch("https://millibort.github.io/Gametest1/data/water.json").then(res => res.json()).then(json => data[2] = json);
     fetch("https://millibort.github.io/Gametest1/data/grass.json").then(res => res.json()).then(json => data[3] = json);
-    fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[4] = json);
-    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[5] = json);
+    fetch("https://millibort.github.io/Gametest1/data/island.json").then(res => res.json()).then(json => data[4] = json);
+    fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[5] = json);
+    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[6] = json);
     pre = setInterval(prerun, 100);
 }
 
 function prerun() {
-    if(data[5] != 1) {
+    if(data[back] != 1) {
         clearInterval(pre);
         console.log(data);
         setInterval(Run, 50);
@@ -51,13 +52,14 @@ var Run = function() {
     ctx.rect(left, zero, 256*mult, 176*mult);
     ctx.fill();
 
+    //5 was back and 4 was map
     //background draw
     var x = 0;
     while(x < 64) {
         var y = 0;
         while(y < 44){
             //console.log(data[5].map[y][x])
-            ctx.fillStyle = data[5].map[y][x];
+            ctx.fillStyle = data[back].map[y][x];
             ctx.beginPath();
             ctx.rect(left + (x*mult*4), zero + (y*mult*4), 4*mult, 4*mult);
             ctx.fill();
@@ -71,7 +73,7 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            var num = data[4].map[i2][i];
+            var num = data[map].map[i2][i];
             var i3 = 0;
             while(i3<16) {
                 var i4 = 0;
@@ -116,6 +118,9 @@ function mousemove(event){
 }
 window.addEventListener('mousemove', mousemove);
 
+
+const map = 5;
+const back = 6;
 var an = 0;
 var done;
 var pre;
