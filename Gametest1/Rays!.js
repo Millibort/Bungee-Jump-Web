@@ -56,6 +56,7 @@ var Run = function() {
     //background draw
     const length = 64 * 2;
     const height = 44 * 2;
+    const size = 1;
     var x = 0;
     while(x < length) {
         var y = 0;
@@ -63,7 +64,7 @@ var Run = function() {
             //console.log(data[5].map[y][x])
             ctx.fillStyle = data[back].map[y][x];
             ctx.beginPath();
-            ctx.rect(left + (x*mult*4), zero + (y*mult*4), 4*mult, 4*mult);
+            ctx.rect(left + (x*mult*1), zero + (y*mult*1), 1*mult, 1*mult);
             ctx.fill();
             y++;
         }
