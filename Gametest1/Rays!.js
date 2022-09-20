@@ -28,15 +28,18 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/water.json").then(res => res.json()).then(json => data[2] = json);
     fetch("https://millibort.github.io/Gametest1/data/grass.json").then(res => res.json()).then(json => data[3] = json);
     fetch("https://millibort.github.io/Gametest1/data/island.json").then(res => res.json()).then(json => data[4] = json);
-    fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => data[5] = json);
-    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => data[6] = json);
+    fetch("https://millibort.github.io/Gametest1/data/island2.json").then(res => res.json()).then(json => data[5] = json);
+    fetch("https://millibort.github.io/Gametest1/data/island3.json").then(res => res.json()).then(json => data[6] = json);
+    fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => maps[0] = json);
+    fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => maps[1] = json);
     pre = setInterval(prerun, 100);
 }
 
 function prerun() {
-    if(data[back] != 1) {
+    if(maps[back] != 1) {
         clearInterval(pre);
         console.log(data);
+        console.log(maps)
         setInterval(Run, 50);
     }
 }
@@ -71,7 +74,7 @@ var Run = function() {
         var y = 0;
         while(y < height){
             //console.log(data[5].map[y][x])
-            ctx.fillStyle = data[back].map[y][x];
+            ctx.fillStyle = maps[back].map[y][x];
             ctx.beginPath();
             ctx.rect(left + (x*mult*size), zero + (y*mult*size), size*mult, size*mult);
             ctx.fill();
@@ -85,7 +88,7 @@ var Run = function() {
     while(i2<11) {
         var i = 0;
         while(i<16) {
-            var num = data[map].map[i2][i];
+            var num = maps[map].map[i2][i];
             var i3 = 0;
             while(i3<16) {
                 var i4 = 0;
@@ -132,12 +135,13 @@ window.addEventListener('mousemove', mousemove);
 
 var oldtime = Math.floor(new Date().getTime() / 1000)
 var fps = 0
-const map = 5;
-const back = 6;
+const map = 0;
+const back = 1;
 var an = 0;
 var done;
 var pre;
 var data = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+var maps = [1,1,1,1,1,1,1,1,1,1,1,1,1]
 var mult;
 var zero;
 var left;
