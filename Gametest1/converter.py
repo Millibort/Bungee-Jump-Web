@@ -2,7 +2,7 @@ import os
 import imageio
 from scipy import misc
 
-def imgtolist():
+def imgtolist(image):
     y = len(image)
     x = len(image[0])
     aray = []
@@ -26,19 +26,42 @@ def imgtolist():
     return(aray)
 
 path = 'C:/Users/Elias/Downloads/'
-if(input("Do you want to change path from downloads")):
-    path = input("path")
-type = input("background or tile?").lower()
+if(input("Do you want to change path from downloads? ") == "y"):
+    path = input("path? ")
+type = input("background or tile? ").lower()
 
 if(type == "background"):
     image= imageio.imread(os.path.join(path, input("file name"))) 
 
 elif(type == "tile"):
     images = []
-    images.append(imageio.imread(os.path.join(path, input("file1 name"))))
-    images.append(imageio.imread(os.path.join(path, input("file2 name"))))
-    images.append(imageio.imread(os.path.join(path, input("file3 name"))))
-    images.append(imageio.imread(os.path.join(path, input("file4 name"))))
+    file1 = input("file1 name ")
+    images.append(imgtolist(imageio.imread(os.path.join(path, file1 + ".png"))))
+    images.append(imgtolist(imageio.imread(os.path.join(path, input("file2 name ") + ".png"))))
+    images.append(imgtolist(imageio.imread(os.path.join(path, input("file3 name ") + ".png"))))
+    images.append(imgtolist(imageio.imread(os.path.join(path, input("file4 name ") + ".png"))))
 
-
-os
+    with open(path + file1 + '.json', 'w') as f:
+        f.write('{\n"texture": [')
+        for i3 in range(4):
+            f.write("[")
+            for i in range(len(images[0])):
+                f.write("[")
+                for i2 in range(len(images[0][i])):
+                    f.write('"' + images[0][i][i2] + '"')
+                    if( i2 != len(images[0][i]) - 1):
+                        f.write(", ")
+                    else:
+                        f.write("\n")
+                f.write("]")
+                if( i != len(images[0]) - 1):
+                    f.write(", ")
+                else:
+                    f.write("\n")
+            f.write("]")
+            if( i3 != 3):
+                f.write(", ")
+            else:
+                f.write("\n")
+        f.write("]")
+        f.write("}")
