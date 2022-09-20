@@ -5,13 +5,13 @@ class creature {
 }
 
 class player {
-    constructor(x,y, data) {
-        self.data = data;
-        self.x = x;
-        self.y = y;
-        self.xvel = 0;
-        self.yvel = 0;
-        self.movespeed = 1;
+    constructor(x,y,jmap) {
+        this.x = x;
+        this.y = y;
+        this.jmap = jmap;
+        this.xvel = 0;
+        this.yvel = 0;
+        this.movespeed = 1;
     }
 
     move() {
@@ -24,19 +24,20 @@ class player {
             key = false
         }
 
-        self.x += self.xvel * self.movespeed;
-        self.y += self.yvel * self.movespeed;
+        this.x += this.xvel * this.movespeed;
+        this.y += this.yvel * this.movespeed;
 
-        if(self.xvel < 0) {self.xvel += drag;}
-        else if(self.xvel > 0) {self.xvel -= drag;}
-        if(self.yvel < 0) {self.yvel += drag;}
-        else if(self.yvel > 0) {self.yvel -= drag;}
+        if(this.xvel < 0) {this.xvel += drag;}
+        else if(this.xvel > 0) {this.xvel -= drag;}
+        if(this.yvel < 0) {this.yvel += drag;}
+        else if(this.yvel > 0) {this.yvel -= drag;}
     }
 
     draw() {
-        for (let i = 0; i < self.data.joints.length; i++) {
-            var joint = self.data.joints[i]
-            console.log(self.data.self.data.joints[i])
+        //console.log(this.jmap.joints)
+        for (let i = 0; i < this.jmap.joints.length; i++) {
+            var joint = this.jmap.joints[i]
+            console.log(joint)
         }
     }
 }
@@ -158,7 +159,7 @@ var Run = function() {
     ctx.rect(left + (mousex*mult), zero + (mousey*mult), 1*mult, 1*mult);
     ctx.fill();
     //console.log(mousebutton)
-    dede.draw
+    dede.draw()
 }
 
 var mousex = false;
