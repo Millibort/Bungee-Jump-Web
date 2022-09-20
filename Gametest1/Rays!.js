@@ -1,3 +1,46 @@
+class creature {
+    constructor(x,y,data) {
+
+    }
+}
+
+class player {
+    constructor(x,y, data) {
+        self.data = data;
+        self.x = x;
+        self.y = y;
+        self.xvel = 0;
+        self.yvel = 0;
+        self.movespeed = 1;
+    }
+
+    move() {
+        if(key == "b") {
+            console.log([mousex, mousey, charx, chary])
+            if(mousex > charx) {charx += movementspeed;}
+            else if(mousex < charx) {charx -= movementspeed;}
+            //if(mousey > chary) {chary += movementspeed;}
+            //else if(mousey < chary) {chary -= movementspeed;}
+            key = false
+        }
+
+        self.x += self.xvel * self.movespeed;
+        self.y += self.yvel * self.movespeed;
+
+        if(self.xvel < 0) {self.xvel += drag;}
+        else if(self.xvel > 0) {self.xvel -= drag;}
+        if(self.yvel < 0) {self.yvel += drag;}
+        else if(self.yvel > 0) {self.yvel -= drag;}
+    }
+
+    draw() {
+        for (let i = 0; i < self.data.joints.length; i++) {
+            var joint = self.data.joints[i]
+            console.log(self.data.self.data.joints[i])
+        }
+    }
+}
+
 var screensetup = function() {
     //width needs 256
     //height needs 176
@@ -19,6 +62,7 @@ var screensetup = function() {
     canvas.height = sheight;
     ctx = canvas.getContext("2d");
     document.body.insertBefore(canvas, document.body.childNodes[0]);
+    canvas.style.cursor = "none";
     loaddata();
 }
 
@@ -32,6 +76,7 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/island3.json").then(res => res.json()).then(json => data[6] = json);
     fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => maps[0] = json);
     fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => maps[1] = json);
+    fetch("https://millibort.github.io/Gametest1/data/dede.json").then(res => res.json()).then(json => maps[2] = json);
     pre = setInterval(prerun, 100);
 }
 
@@ -40,13 +85,14 @@ function prerun() {
         clearInterval(pre);
         console.log(data);
         console.log(maps)
+        dede = new player(50, 157, maps[2])
         setInterval(Run, 50);
     }
 }
 
 var Run = function() {
     if(Math.floor(new Date().getTime() / 1000) > oldtime) {
-        console.log(fps)
+        //console.log(fps)
         fps = 0
         oldtime = Math.floor(new Date().getTime() / 1000)
     }
@@ -64,7 +110,6 @@ var Run = function() {
     ctx.rect(left, zero, 256*mult, 176*mult);
     ctx.fill();
 
-    //5 was back and 4 was map
     //background draw
     const length = 64 * 2;
     const height = 44 * 2;
@@ -73,7 +118,6 @@ var Run = function() {
     while(x < length) {
         var y = 0;
         while(y < height){
-            //console.log(data[5].map[y][x])
             ctx.fillStyle = maps[back].map[y][x];
             ctx.beginPath();
             ctx.rect(left + (x*mult*size), zero + (y*mult*size), size*mult, size*mult);
@@ -82,7 +126,6 @@ var Run = function() {
         }
         x++;
     }
-    //ctx.drawImage(data[5], left, zero)
 
     var i2 = 0;
     while(i2<11) {
@@ -114,17 +157,29 @@ var Run = function() {
     ctx.beginPath();
     ctx.rect(left + (mousex*mult), zero + (mousey*mult), 1*mult, 1*mult);
     ctx.fill();
-    //console.log([mousex, mousey])
+    //console.log(mousebutton)
+    dede.draw
 }
 
 var mousex = false;
 var mousey = false;
 var key = false;
+var mousebutton = false;
 
+
+window.addEventListener('mousedown', function (e) {
+    mousebutton = e.button;
+})
+  window.addEventListener('mouseup', function (e) {
+    mousebutton = false;
+})
 window.addEventListener('keydown', function (e) {
     key = e.key;
 })
   window.addEventListener('keyup', function (e) {
+    key = false;
+})
+window.addEventListener('keyup', function (e) {
     key = false;
 })
 function mousemove(event){ 
@@ -133,6 +188,8 @@ function mousemove(event){
 }
 window.addEventListener('mousemove', mousemove);
 
+const drag = 1;
+var dede = "hold"
 var oldtime = Math.floor(new Date().getTime() / 1000)
 var fps = 0
 const map = 0;
