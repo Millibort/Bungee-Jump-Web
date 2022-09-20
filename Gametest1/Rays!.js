@@ -42,6 +42,15 @@ function prerun() {
 }
 
 var Run = function() {
+    if(Math.floor(new Date().getTime() / 1000) > oldtime) {
+        if(fps > 14) {console.log(fps)}
+        fps = 0
+        oldtime = Math.floor(new Date().getTime() / 1000)
+    }
+    else {
+        fps ++
+    }
+
     ctx.fillStyle = "#000000";
     ctx.beginPath();
     ctx.rect(0, 0, swidth, sheight);
@@ -121,7 +130,8 @@ function mousemove(event){
 }
 window.addEventListener('mousemove', mousemove);
 
-
+var oldtime = Math.floor(new Date().getTime() / 1000)
+var fps = 0
 const map = 5;
 const back = 6;
 var an = 0;
