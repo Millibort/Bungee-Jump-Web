@@ -80,7 +80,7 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/island.json").then(res => res.json()).then(json => data[4] = json);
     fetch("https://millibort.github.io/Gametest1/data/island2.json").then(res => res.json()).then(json => data[5] = json);
     fetch("https://millibort.github.io/Gametest1/data/island3.json").then(res => res.json()).then(json => data[6] = json);
-    fetch("https://millibort.github.io/Gametest1/data/dede(tile).json").then(res => res.json()).then(json => data[7] = json);
+    fetch("https://millibort.github.io/Gametest1/data/dede(S).json").then(res => res.json()).then(json => data[7] = json);
     fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => maps[0] = json);
     fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => maps[1] = json);
     fetch("https://millibort.github.io/Gametest1/data/dede.json").then(res => res.json()).then(json => maps[2] = json);
