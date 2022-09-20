@@ -43,7 +43,7 @@ function prerun() {
 
 var Run = function() {
     if(Math.floor(new Date().getTime() / 1000) > oldtime) {
-        if(fps > 14) {console.log(fps)}
+        console.log(fps)
         fps = 0
         oldtime = Math.floor(new Date().getTime() / 1000)
     }
