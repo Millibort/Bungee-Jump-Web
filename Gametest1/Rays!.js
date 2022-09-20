@@ -35,9 +35,14 @@ class player {
 
     draw() {
         //console.log(this.jmap.joints)
+        var x = this.x;
+        var y = this.y;
         for (let i = 0; i < this.jmap.joints.length; i++) {
-            var joint = this.jmap.joints[i]
-            console.log(joint)
+            var joint = this.jmap.joints[i];
+            if(joint[0] != "origin") {
+
+            }
+            //console.log(joint);
         }
     }
 }
@@ -75,6 +80,7 @@ var loaddata = function() {
     fetch("https://millibort.github.io/Gametest1/data/island.json").then(res => res.json()).then(json => data[4] = json);
     fetch("https://millibort.github.io/Gametest1/data/island2.json").then(res => res.json()).then(json => data[5] = json);
     fetch("https://millibort.github.io/Gametest1/data/island3.json").then(res => res.json()).then(json => data[6] = json);
+    fetch("https://millibort.github.io/Gametest1/data/dede(tile).json").then(res => res.json()).then(json => data[7] = json);
     fetch("https://millibort.github.io/Gametest1/data/map1.json").then(res => res.json()).then(json => maps[0] = json);
     fetch("https://millibort.github.io/Gametest1/data/background.json").then(res => res.json()).then(json => maps[1] = json);
     fetch("https://millibort.github.io/Gametest1/data/dede.json").then(res => res.json()).then(json => maps[2] = json);
@@ -93,7 +99,7 @@ function prerun() {
 
 var Run = function() {
     if(Math.floor(new Date().getTime() / 1000) > oldtime) {
-        //console.log(fps)
+        console.log(fps)
         fps = 0
         oldtime = Math.floor(new Date().getTime() / 1000)
     }
