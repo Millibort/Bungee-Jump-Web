@@ -226,7 +226,7 @@ gdjs.Scn_95GameCode.eventsList2(runtimeScene);} //End of subevents
 
 };gdjs.Scn_95GameCode.eventsList5 = function(runtimeScene) {
 
-};gdjs.Scn_95GameCode.userFunc0x12041b0 = function(runtimeScene) {
+};gdjs.Scn_95GameCode.userFunc0x108f4b8 = function(runtimeScene) {
 "use strict";
 var variables = runtimeScene.getVariables();
 var size = variables.get("Map_Size");
@@ -255,7 +255,7 @@ gdjs.Scn_95GameCode.eventsList5(runtimeScene);
 {
 
 
-gdjs.Scn_95GameCode.userFunc0x12041b0(runtimeScene);
+gdjs.Scn_95GameCode.userFunc0x108f4b8(runtimeScene);
 
 }
 

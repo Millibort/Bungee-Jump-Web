@@ -72,6 +72,7 @@ gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Ob
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
+gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Objects = Hashtable.newFrom({"Txt_NewGame": gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects2});
 gdjs.Scn_95HomeCode.eventsList1 = function(runtimeScene) {
 
 {
@@ -249,6 +250,25 @@ gdjs.Scn_95HomeCode.condition1IsTrue_0.val = gdjs.evtTools.input.isMouseButtonRe
 }}
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
 {gdjs.evtTools.runtimeScene.pushScene(runtimeScene, "Scn_Settings");
+}}
+
+}
+
+
+{
+
+gdjs.copyArray(runtimeScene.getObjects("Txt_NewGame"), gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects2);
+
+gdjs.Scn_95HomeCode.condition0IsTrue_0.val = false;
+gdjs.Scn_95HomeCode.condition1IsTrue_0.val = false;
+{
+gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Objects, runtimeScene, true, false);
+}if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
+{
+gdjs.Scn_95HomeCode.condition1IsTrue_0.val = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Left");
+}}
+if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
+{gdjs.evtTools.runtimeScene.pushScene(runtimeScene, "Scn_Game");
 }}
 
 }
