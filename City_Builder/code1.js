@@ -72,7 +72,7 @@ gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Ob
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
 gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595SettingsObjects2Objects = Hashtable.newFrom({"Txt_Settings": gdjs.Scn_95HomeCode.GDTxt_95SettingsObjects2});
-gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Objects = Hashtable.newFrom({"Txt_NewGame": gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects2});
+gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects1Objects = Hashtable.newFrom({"Txt_NewGame": gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects1});
 gdjs.Scn_95HomeCode.eventsList1 = function(runtimeScene) {
 
 {
@@ -127,7 +127,7 @@ gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(
 }if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
 {
 {gdjs.Scn_95HomeCode.conditionTrue_1 = gdjs.Scn_95HomeCode.condition1IsTrue_0;
-gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(25700596);
+gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(51216260);
 }
 }}
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
@@ -157,7 +157,7 @@ gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(
 }if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
 {
 {gdjs.Scn_95HomeCode.conditionTrue_1 = gdjs.Scn_95HomeCode.condition1IsTrue_0;
-gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(25701836);
+gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(51217500);
 }
 }}
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
@@ -187,7 +187,7 @@ gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(
 }if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
 {
 {gdjs.Scn_95HomeCode.conditionTrue_1 = gdjs.Scn_95HomeCode.condition1IsTrue_0;
-gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(25703052);
+gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(51218716);
 }
 }}
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
@@ -217,7 +217,7 @@ gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(
 }if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
 {
 {gdjs.Scn_95HomeCode.conditionTrue_1 = gdjs.Scn_95HomeCode.condition1IsTrue_0;
-gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(25704292);
+gdjs.Scn_95HomeCode.conditionTrue_1.val = runtimeScene.getOnceTriggers().triggerOnce(51219956);
 }
 }}
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
@@ -257,12 +257,12 @@ if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
 
 {
 
-gdjs.copyArray(runtimeScene.getObjects("Txt_NewGame"), gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects2);
+gdjs.copyArray(runtimeScene.getObjects("Txt_NewGame"), gdjs.Scn_95HomeCode.GDTxt_95NewGameObjects1);
 
 gdjs.Scn_95HomeCode.condition0IsTrue_0.val = false;
 gdjs.Scn_95HomeCode.condition1IsTrue_0.val = false;
 {
-gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects2Objects, runtimeScene, true, false);
+gdjs.Scn_95HomeCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gdjs.Scn_95HomeCode.mapOfGDgdjs_46Scn_9595HomeCode_46GDTxt_9595NewGameObjects1Objects, runtimeScene, true, false);
 }if ( gdjs.Scn_95HomeCode.condition0IsTrue_0.val ) {
 {
 gdjs.Scn_95HomeCode.condition1IsTrue_0.val = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Left");
@@ -270,15 +270,6 @@ gdjs.Scn_95HomeCode.condition1IsTrue_0.val = gdjs.evtTools.input.isMouseButtonRe
 if (gdjs.Scn_95HomeCode.condition1IsTrue_0.val) {
 {gdjs.evtTools.runtimeScene.pushScene(runtimeScene, "Scn_Game");
 }}
-
-}
-
-
-{
-
-
-{
-}
 
 }
 

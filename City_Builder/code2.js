@@ -11,6 +11,9 @@ gdjs.Scn_95SettingsCode.GDTxt_95VolumeSlider_95Objects3= [];
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects1= [];
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects2= [];
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects3= [];
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects1= [];
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects2= [];
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects3= [];
 
 gdjs.Scn_95SettingsCode.conditionTrue_0 = {val:false};
 gdjs.Scn_95SettingsCode.condition0IsTrue_0 = {val:false};
@@ -61,7 +64,8 @@ gdjs.Scn_95SettingsCode.GDObj_95VolumeSlider_95KnobObjects1.length = k;}if (gdjs
 }
 
 
-};gdjs.Scn_95SettingsCode.eventsList1 = function(runtimeScene) {
+};gdjs.Scn_95SettingsCode.mapOfGDgdjs_46Scn_9595SettingsCode_46GDObj_9595BackButtonObjects1Objects = Hashtable.newFrom({"Obj_BackButton": gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects1});
+gdjs.Scn_95SettingsCode.eventsList1 = function(runtimeScene) {
 
 {
 
@@ -133,7 +137,7 @@ gdjs.Scn_95SettingsCode.eventsList1(runtimeScene);} //End of subevents
 gdjs.copyArray(runtimeScene.getObjects("Obj_VolumeSlider_Knob"), gdjs.Scn_95SettingsCode.GDObj_95VolumeSlider_95KnobObjects1);
 gdjs.copyArray(runtimeScene.getObjects("Txt_Volume_Disp"), gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects1);
 {for(var i = 0, len = gdjs.Scn_95SettingsCode.GDObj_95VolumeSlider_95KnobObjects1.length ;i < len;++i) {
-    gdjs.Scn_95SettingsCode.GDObj_95VolumeSlider_95KnobObjects1[i].setY(64 + gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(10)));
+    gdjs.Scn_95SettingsCode.GDObj_95VolumeSlider_95KnobObjects1[i].setY(138 + gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(10)));
 }
 }{for(var i = 0, len = gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects1.length ;i < len;++i) {
     gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects1[i].setString(gdjs.evtTools.common.toString(gdjs.evtTools.variable.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(10))));
@@ -192,6 +196,25 @@ gdjs.Scn_95SettingsCode.condition0IsTrue_0.val = gdjs.evtTools.variable.getVaria
 
 {
 
+gdjs.copyArray(runtimeScene.getObjects("Obj_BackButton"), gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects1);
+
+gdjs.Scn_95SettingsCode.condition0IsTrue_0.val = false;
+gdjs.Scn_95SettingsCode.condition1IsTrue_0.val = false;
+{
+gdjs.Scn_95SettingsCode.condition0IsTrue_0.val = gdjs.evtTools.input.cursorOnObject(gdjs.Scn_95SettingsCode.mapOfGDgdjs_46Scn_9595SettingsCode_46GDObj_9595BackButtonObjects1Objects, runtimeScene, true, false);
+}if ( gdjs.Scn_95SettingsCode.condition0IsTrue_0.val ) {
+{
+gdjs.Scn_95SettingsCode.condition1IsTrue_0.val = gdjs.evtTools.input.isMouseButtonReleased(runtimeScene, "Left");
+}}
+if (gdjs.Scn_95SettingsCode.condition1IsTrue_0.val) {
+{gdjs.evtTools.runtimeScene.popScene(runtimeScene);
+}}
+
+}
+
+
+{
+
 
 gdjs.Scn_95SettingsCode.eventsList2(runtimeScene);
 }
@@ -214,6 +237,9 @@ gdjs.Scn_95SettingsCode.GDTxt_95VolumeSlider_95Objects3.length = 0;
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects1.length = 0;
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects2.length = 0;
 gdjs.Scn_95SettingsCode.GDTxt_95Volume_95DispObjects3.length = 0;
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects1.length = 0;
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects2.length = 0;
+gdjs.Scn_95SettingsCode.GDObj_95BackButtonObjects3.length = 0;
 
 gdjs.Scn_95SettingsCode.eventsList3(runtimeScene);
 
