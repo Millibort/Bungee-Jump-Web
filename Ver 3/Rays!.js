@@ -1,4 +1,4 @@
-const viewAngle = 360;
+const viewAngle = 180;
 const rays = 1500;
 const renderDist = 100;
 const hop = .5;
@@ -6,7 +6,7 @@ const moveSpeed = 2;
 const screensize = 100;
 
 const angChange = viewAngle/rays;
-console.log(angChange);
+//console.log(angChange);
 const renDist = renderDist / hop;
 var hits = [];
 var charX = 5;
@@ -56,7 +56,7 @@ class charhitBox {
 
     checkHit = function() {
         if(charX > this.xl & charX < this.xb & charY > this.yl & charY < this.yb) {
-            console.log('test')
+            //console.log('test')
             wall = this.type
             return(true);
         }
@@ -64,7 +64,7 @@ class charhitBox {
 };
 
 var newPoint = function() {
-    console.log(charX, charY);
+    //console.log(charX, charY);
     points.push(new point(charX, charY, pointnum));
     hitboxes.push(new hitBox(charX, charY, 1, 1,'point'));
     pointnum ++;
@@ -158,7 +158,7 @@ var movechar = function() {
     if (key == 'a' || key2 == 'a') {
         charX += -moveSpeed;
         if(checkCollisions2() === true) {
-            console.log('a');
+            //console.log('a');
             if(wall === 'grid' || wall === 'point') {}
             else {charX -= -moveSpeed;}
             
@@ -168,7 +168,7 @@ var movechar = function() {
     else if (key == 'd' || key2 == 'd') {
         charX += moveSpeed;
         if(checkCollisions2() === true) {
-            console.log('d');
+            //console.log('d');
             if(wall === 'grid' || wall === 'point') {}
             else {charX -= moveSpeed;}
         }
@@ -176,7 +176,7 @@ var movechar = function() {
     else if (key == 'w' || key2 == 'w') {
         charY += -moveSpeed;
         if(checkCollisions2() === true) {
-            console.log('w');
+            //console.log('w');
             if(wall === 'grid' || wall === 'point') {}
             else {charY -= -moveSpeed;}
         }
@@ -184,7 +184,7 @@ var movechar = function() {
     else if (key == 's' || key2 == 's') {
         charY += moveSpeed;
         if(checkCollisions2() === true) {
-            console.log('s');
+            //console.log('s');
             if(wall === 'grid' || wall === 'point') {}
             else {charY -= moveSpeed;}
         }
@@ -194,7 +194,7 @@ var movechar = function() {
 var Run = function() {
     movechar();
     if (key == 'p') {newPoint();}
-    else if (key == 'l') {console.log(points);}
+    //else if (key == 'l') {console.log(points);}
     ctx.fillStyle = "#111111";
     ctx.beginPath();
     ctx.rect(0, 0, screensize*2, screensize*2);
