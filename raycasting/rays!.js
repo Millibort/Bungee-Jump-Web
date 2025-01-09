@@ -69,22 +69,61 @@ function calcdist(list, origin){
 }
 
 function sort(list) {
-  return [list].sort((a, b) => a.distance - b.distance);
+  var temp;
+  var sorted = [];
+  for(let i = 0; i < list.length; i++){
+    temp = [0, 10000];
+    for(let j = 0; j < list.length; j++){
+      if(list[j].distance < temp[1]){temp[0] = j; temp[1] = list[j].distance;}
+    }
+    //console.log(temp[0]);
+    sorted.push(list[temp[0]]);
+    list[temp[0]].distance = 1000000;
+  }
+  return(sorted);
+}
+
+function toRadians(degrees) {
+  return degrees * (Math.PI / 180);
+}
+
+function rotateVector(vector, yaw, pitch) {
+  const yawRad = toRadians(yaw);
+  const pitchRad = toRadians(pitch);
+
+  // Rotate around the y-axis (yaw)
+  const cosYaw = Math.cos(yawRad);
+  const sinYaw = Math.sin(yawRad);
+  let x = vector[0] * cosYaw - vector[2] * sinYaw;
+  let z = vector[0] * sinYaw + vector[2] * cosYaw;
+
+  // Rotate around the x-axis (pitch)
+  const cosPitch = Math.cos(pitchRad);
+  const sinPitch = Math.sin(pitchRad);
+  let y = vector[1] * cosPitch - z * sinPitch;
+  z = vector[1] * sinPitch + z * cosPitch;
+
+  return normalizeVector([x, y, z]);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////intial setup
 
 var player = {
   location: [0,0,0],
+  yaw: 0,
+  pitch: 0,
 }
 
 var objects = [];
-var visible = [];
 
 objects.push(new sphere([0,3,20], 2, "red"))
 objects.push(new sphere([0,0,10], 2, "#FFFFFF"))
 objects.push(new sphere([-10,4,10], 1, "#FF00FF"))
-objects.push(new sphere([10000,0,0], 50, "#0000FF"))
+//objects.push(new sphere([0,0,0], 100, "#0000FF"))
+
+
+
+var visible = sort(calcdist(objects, player));
 
 const screen = [];
 const small = [];
@@ -105,10 +144,19 @@ var normalizedVector = normalizeVector(vector);
 var result = false;
 var move = 1
 var charface = 0
+var face = 0;
+var frame = 0;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////run every frame
 
 var Run = function(){
+  frame ++
+  if(frame >= 5) {
+    frame=0;
+    visible = sort(calcdist(objects, player));
+    //console.log(calcdist(objects, player)[0].distance);
+  }
+
   ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.rect(0, 0, screensize, screensize);
@@ -116,13 +164,13 @@ var Run = function(){
 
   for (let i = 0; i < rendersize; i++){
     for (let j = 0; j < rendersize; j++){
-      visible = sort(calcdist(objects, player));
       vector = [player.location[0] + i-rendersize/2, player.location[1] + j-rendersize/2, player.location[2] + rendersize];
-      normalizedVector = normalizeVector(vector);
+
+      normalizedVector = normalizeVector(rotateVector(vector, player.yaw, player.pitch));
 
       var hit = 0;
-      for(let i2 = 0; i2 < objects.length; i2++){
-        if(objects[i2].type == 0){if(doesRayIntersectSphere([player.location[0], player.location[1], player.location[2]], normalizedVector, objects[i2])){ctx.fillStyle = objects[i2].color; hit = 1;}}
+      for(let i2 = 0; i2 < visible.length; i2++){
+        if(visible[i2].type == 0){if(doesRayIntersectSphere([player.location[0], player.location[1], player.location[2]], normalizedVector, visible[i2])){ctx.fillStyle = visible[i2].color; hit = 1; i2 = visible[0].length + 1;}}
       }
 
       if(hit == 1){
@@ -136,13 +184,18 @@ var Run = function(){
     if(key == "w") {player.location[2] += movespeed;}
     if(key == "d") {player.location[0] += movespeed;}
     if(key == "a") {player.location[0] -= movespeed;}
+    if(key == "r") {player.location[1] -= movespeed;}
+    if(key == "f") {player.location[1] += movespeed;}
 
-    if(key == "e") {charface += movespeed; if(charface > 360){charface = 0}; console.log(charface);}
-    if(key == "q") {charface -= movespeed; if(charface < 0){charface = 360}; console.log(charface);}
+    if(key == "ArrowLeft") {player.yaw += movespeed; if(player.yaw > 360){player.yaw = 0};}
+    if(key == "ArrowRight") {player.yaw -= movespeed; if(player.yaw < 0){player.yaw = 360};}
+    if(key == "ArrowUp") {player.pitch += movespeed; if(player.pitch > 360){player.pitch = 0};}
+    if(key == "ArrowDown") {player.pitch -= movespeed; if(player.pitch < 0){player.pitch = 360};}
   }
 }
 
-console.log(sort(calcdist(objects, player)))
+//console.log(sort(calcdist(objects, player)))
+
 
 setInterval(Run, 20);
 
