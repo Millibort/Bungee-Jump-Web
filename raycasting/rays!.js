@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////things to change
-const screensize = 600;
+const screensize = 800;
 const rendersize = 200;
 const renderdif = screensize/rendersize;
 const movespeed = 0.01;
@@ -21,6 +21,21 @@ class sphere {
     this.type = 0;
     this.distance = 0;
   }
+}
+
+function dotProduct(v1, v2) {
+  return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
+}
+
+function getViewDirection(yaw, pitch) {
+  const yawRad = toRadians(yaw);
+  const pitchRad = toRadians(pitch);
+
+  const x = Math.cos(pitchRad) * Math.sin(yawRad);
+  const y = Math.sin(pitchRad);
+  const z = Math.cos(pitchRad) * Math.cos(yawRad);
+
+  return normalizeVector([x, y, z]);
 }
 
 var rotate = function(vector, degree) {
@@ -61,6 +76,27 @@ function doesRayIntersectSphere(rayOrigin, rayDirection, sphere) {
   return true; 
 }
 
+function cullObjects(player, objects) {
+  const playerViewDirection = getViewDirection(player.yaw, player.pitch);
+
+   return objects.filter((obj) => {
+    // Ensure the object has a valid location
+    if (!obj.center || obj.center.length !== 3) {
+      console.warn("Object missing valid center:", obj);
+      return false; // Exclude invalid objects
+    }
+    // Calculate direction vector from player to object
+    const directionToObject = normalizeVector([
+      obj.center[0] - player.location[0],
+      obj.center[1] - player.location[1],
+      obj.center[2] - player.location[2],
+    ]);
+    
+    // Check if object is within the player's field of view (in front of the player)
+    return dotProduct(playerViewDirection, directionToObject) > 0;
+  });
+}
+
 function calcdist(list, origin){
   for(let i = 0; i < list.length; i++){
     list[i].distance = Math.sqrt((list[i].center[0] - origin.location[0])**2 + (list[i].center[1] - origin.location[1])**2 + (list[i].center[2] - origin.location[2])**2)
@@ -85,6 +121,21 @@ function sort(list) {
 
 function toRadians(degrees) {
   return degrees * (Math.PI / 180);
+}
+
+function calculateMovementVector(yaw, pitch, movespeed, direction) {
+  const yawRad = toRadians(yaw);
+  const pitchRad = toRadians(pitch);
+
+  // Movement direction multipliers
+  const forward = direction === "forward" ? 1 : direction === "backward" ? -1 : 0;
+  const strafe = direction === "right" ? 1 : direction === "left" ? -1 : 0;
+
+  const x = Math.cos(pitchRad) * Math.sin(yawRad) * forward + Math.cos(yawRad) * strafe;
+  const y = Math.sin(pitchRad) * forward;
+  const z = Math.cos(pitchRad) * Math.cos(yawRad) * forward - Math.sin(yawRad) * strafe;
+
+  return [x * movespeed, y * movespeed, z * movespeed];
 }
 
 function rotateVector(vector, yaw, pitch) {
@@ -153,7 +204,7 @@ var Run = function(){
   frame ++
   if(frame >= 5) {
     frame=0;
-    visible = sort(calcdist(objects, player));
+    visible = cullObjects(player, sort(calcdist(objects, player)));
     //console.log(calcdist(objects, player)[0].distance);
   }
 
@@ -179,13 +230,36 @@ var Run = function(){
         ctx.fill();
       }
     }
-
+/*
     if(key == "s") {player.location[2] -= movespeed;}
     if(key == "w") {player.location[2] += movespeed;}
     if(key == "d") {player.location[0] += movespeed;}
     if(key == "a") {player.location[0] -= movespeed;}
     if(key == "r") {player.location[1] -= movespeed;}
     if(key == "f") {player.location[1] += movespeed;}
+*/
+    if (key === "w" || key === "s" || key === "d" || key === "a") {
+      let direction = null;
+      if (key === "w") direction = "forward";
+      if (key === "s") direction = "backward";
+      if (key === "d") direction = "right";
+      if (key === "a") direction = "left";
+
+      const movement = calculateMovementVector(player.yaw, player.pitch, movespeed, direction);
+      player.location[0] -= movement[0];
+      player.location[1] -= movement[1];
+      player.location[2] -= movement[2];
+    }
+
+    if (key === "r") {
+      // Move up
+      player.location[1] += movespeed;
+    }
+
+    if (key === "f") {
+      // Move down
+      player.location[1] -= movespeed;
+    }
 
     if(key == "ArrowLeft") {player.yaw += movespeed; if(player.yaw > 360){player.yaw = 0};}
     if(key == "ArrowRight") {player.yaw -= movespeed; if(player.yaw < 0){player.yaw = 360};}
@@ -196,158 +270,15 @@ var Run = function(){
 
 //console.log(sort(calcdist(objects, player)))
 
-
 setInterval(Run, 20);
-
 /*
-const screensize = 300;
-const movespeed = 0.01;
-let yaw = 0; // Horizontal rotation (in degrees)
-let pitch = 0; // Vertical rotation (in degrees)
+objects = [
+  { center: [10, 0, 10] }, // In front
+  { center: [-10, 0, -10] }, // Behind
+  { center: [0, 5, 10] }, // Above and in front
+  { center: [10, -5, -10] }, // Behind
+  { notLocation: [5, 5, 5] }, // Invalid input: no `location`
+];
 
-canvas = document.createElement("canvas");
-canvas.width = screensize;
-canvas.height = screensize;
-ctx = canvas.getContext("2d");
-document.body.insertBefore(canvas, document.body.childNodes[0]);
-canvas.style.cursor = "none";
-
-// Converts degrees to radians
-const toRadians = (degrees) => degrees * (Math.PI / 180);
-
-// Normalize a vector
-function normalizeVector(vector) {
-  const magnitude = Math.sqrt(vector.reduce((sum, component) => sum + component ** 2, 0));
-  if (magnitude === 0) {
-    throw new Error("Cannot normalize a zero-length vector.");
-  }
-  return vector.map(component => component / magnitude);
-}
-
-// Rotate a vector using a yaw (horizontal rotation) and pitch (vertical rotation)
-function rotateVector(vector, yaw, pitch) {
-  // Convert angles to radians
-  const yawRad = toRadians(yaw);
-  const pitchRad = toRadians(pitch);
-
-  // Yaw rotation (around the y-axis)
-  const cosYaw = Math.cos(yawRad);
-  const sinYaw = Math.sin(yawRad);
-  let rotatedX = vector[0] * cosYaw - vector[2] * sinYaw;
-  let rotatedZ = vector[0] * sinYaw + vector[2] * cosYaw;
-
-  // Pitch rotation (around the x-axis)
-  const cosPitch = Math.cos(pitchRad);
-  const sinPitch = Math.sin(pitchRad);
-  let rotatedY = vector[1] * cosPitch - rotatedZ * sinPitch;
-  rotatedZ = vector[1] * sinPitch + rotatedZ * cosPitch;
-
-  return normalizeVector([rotatedX, rotatedY, rotatedZ]);
-}
-
-function sort(list) {
-  var dist = [];
-  var dlist = [];
-  for (let i = 0; i < list.length; i++) {
-    dist = [list[i].center[0] - cameraOrigin[0], list[i].center[1] - cameraOrigin[1], list[i].center[2] - cameraOrigin[2]];
-    dlist.push(Math.sqrt(dist[0]^2 + dist[1]^2 + dist[2]^2));
-  }
-  return(dlist);
-}
-
-// Check if a ray intersects a sphere
-function doesRayIntersectSphere(rayOrigin, rayDirection, sphere) {
-  const center = sphere.center;
-  const radius = sphere.radius;
-  const oc = [
-    rayOrigin[0] - center[0],
-    rayOrigin[1] - center[1],
-    rayOrigin[2] - center[2],
-  ];
-
-  const a = rayDirection.reduce((sum, component) => sum + component ** 2, 0);
-  const b = 2 * oc.reduce((sum, component, i) => sum + component * rayDirection[i], 0);
-  const c = oc.reduce((sum, component) => sum + component ** 2, 0) - radius ** 2;
-
-  const discriminant = b ** 2 - 4 * a * c;
-  return discriminant >= 0; // True if intersection occurs
-}
-
-// Example sphere
-function sphere(center, radius, color) {
-  this.center = center;
-  this.radius = radius;
-  this.color = color;
-}
-
-//const sphere = {
-//  center: [3, 0, 10], // Sphere center
-//  radius: 2, // Sphere radius
-//};
-
-const objects = [];
-
-objects.push(new sphere([3,0,10], 2, "green"))
-objects.push(new sphere([10,0,10], 1, "red"))
-objects.push(new sphere([0,15,10], 5, "magenta"))
-//objects.push(new sphere([5,0,10], 1, "red"))
-//objects.push(new sphere([5,0,10], 1, "red"))
-
-// Camera parameters
-var cameraOrigin = [0, 0, 0];
-const fov = 75; // Field of view in degrees
-
-function render() {
-  sort(objects)
-  const aspectRatio = canvas.width / canvas.height;
-  const fovRad = toRadians(fov);
-  const halfHeight = Math.tan(fovRad / 2);
-  const halfWidth = aspectRatio * halfHeight;
-
-  const pixelWidth = (2 * halfWidth) / canvas.width;
-  const pixelHeight = (2 * halfHeight) / canvas.height;
-
-  // Iterate over each pixel
-  for (let y = 0; y < canvas.height; y++) {
-    for (let x = 0; x < canvas.width; x++) {
-      // Map pixel to NDC (Normalized Device Coordinates)
-      const ndcX = (x + 0.5) * pixelWidth - halfWidth;
-      const ndcY = halfHeight - (y + 0.5) * pixelHeight;
-
-      // Calculate ray direction in camera space
-      let rayDirection = normalizeVector([ndcX, ndcY, 1]);
-
-      // Rotate ray direction based on camera yaw and pitch
-      rayDirection = rotateVector(rayDirection, yaw, pitch);
-
-      var intersects = false;
-      var j = 0;
-      // Check for intersection with the sphere
-      for (let i = 0; i < objects.length; i++) {
-        intersects = doesRayIntersectSphere(cameraOrigin, rayDirection, objects[i]);
-        if(intersects) {j=i;i = objects.length}
-      }
-
-      // Color the pixel based on the intersection result
-      ctx.fillStyle = intersects ? objects[j].color : "black";
-      ctx.fillRect(x, y, 1, 1);
-    }
-  }
-}
-
-// Handle user input for turning
-document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowLeft") yaw -= 5; // Turn left
-  if (event.key === "ArrowRight") yaw += 5; // Turn right
-  if (event.key === "ArrowUp") pitch -= 5; // Look up
-  if (event.key === "ArrowDown") pitch += 5; // Look down
-
-  if (event.key === "w") cameraOrigin[2] += 1;
-  if (event.key === "a") cameraOrigin[0] -= 1;
-  if (event.key === "s") cameraOrigin[2] -= 1;
-  if (event.key === "d") cameraOrigin[0] += 1;
-  render();
-});
-
-render();
-*/
+const visibleObjects = cullObjects(player, objects);
+console.log("Visible objects:", visibleObjects);*/
