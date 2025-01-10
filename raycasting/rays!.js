@@ -246,9 +246,9 @@ var Run = function(){
       if (key === "a") direction = "left";
 
       const movement = calculateMovementVector(player.yaw, player.pitch, movespeed, direction);
-      player.location[0] -= movement[0];
-      player.location[1] -= movement[1];
-      player.location[2] -= movement[2];
+      player.location[0] += movement[0];
+      player.location[1] += movement[1];
+      player.location[2] += movement[2];
     }
 
     if (key === "r") {
