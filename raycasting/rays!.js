@@ -201,10 +201,11 @@ var frame = 0;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////run every frame
 
 var Run = function(){
+  visible = cullObjects(player, sort(calcdist(objects, player)));
   frame ++
   if(frame >= 5) {
     frame=0;
-    visible = cullObjects(player, sort(calcdist(objects, player)));
+    
     //console.log(calcdist(objects, player)[0].distance);
   }
 
@@ -261,10 +262,10 @@ var Run = function(){
       player.location[1] -= movespeed;
     }
 
-    if(key == "ArrowLeft") {player.yaw += movespeed; if(player.yaw > 360){player.yaw = 0};}
-    if(key == "ArrowRight") {player.yaw -= movespeed; if(player.yaw < 0){player.yaw = 360};}
-    if(key == "ArrowUp") {player.pitch += movespeed; if(player.pitch > 360){player.pitch = 0};}
-    if(key == "ArrowDown") {player.pitch -= movespeed; if(player.pitch < 0){player.pitch = 360};}
+    if(key == "j") {player.yaw += movespeed; if(player.yaw > 360){player.yaw = 0};}
+    if(key == "l") {player.yaw -= movespeed; if(player.yaw < 0){player.yaw = 360};}
+    if(key == "i") {player.pitch += movespeed; if(player.pitch > 360){player.pitch = 0};}
+    if(key == "k") {player.pitch -= movespeed; if(player.pitch < 0){player.pitch = 360};}
   }
 }
 
