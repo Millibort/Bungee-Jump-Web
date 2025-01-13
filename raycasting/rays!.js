@@ -77,7 +77,7 @@ function doesRayIntersectSphere(rayOrigin, rayDirection, sphere) {
 }
 
 function cullObjects(player, objects) {
-  const playerViewDirection = getViewDirection(player.yaw, player.pitch);
+  const playerViewDirection = getViewDirection(player.yaw*-1, player.pitch*-1);
 
    return objects.filter((obj) => {
     // Ensure the object has a valid location
@@ -124,8 +124,8 @@ function toRadians(degrees) {
 }
 
 function calculateMovementVector(yaw, pitch, movespeed, direction) {
-  const yawRad = toRadians(yaw);
-  const pitchRad = toRadians(pitch);
+  const yawRad = toRadians(yaw*-1);
+  const pitchRad = toRadians(pitch*-1);
 
   // Movement direction multipliers
   const forward = direction === "forward" ? 1 : direction === "backward" ? -1 : 0;
